@@ -4600,7 +4600,7 @@ swiper .swiper-container {
 customer-site-section {
   padding: 15px 30px;
 }
-customer-site-section.section-container:nth-child(odd).section-content {
+.section-container:nth-child(odd).section-content {
   background-color: #f7f7f7;
 }
 
