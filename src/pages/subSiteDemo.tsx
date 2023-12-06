@@ -26,11 +26,11 @@ interface SubSiteInterface {
     site: SiteInterface
 }
 
-const SubSite = ({ site }: SubSiteInterface) => {
+const SubSiteDemo = ({ site }: SubSiteInterface) => {
     //
     return <ThemeContext.Provider value={{theme: site.theme}}>
         <PageBuilder {...site}/>
     </ThemeContext.Provider>
 }
 
-export default SubSite
+export default SubSiteDemo
