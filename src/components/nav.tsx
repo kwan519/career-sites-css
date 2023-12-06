@@ -22,7 +22,7 @@ interface NavBuilderInterface {
 const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
     const navigation = navData.navigation
     const { theme } = useContext(ThemeContext)
-    return <div className="w-full flex justify-between p-4 h-[52px]"
+    return <div className="w-full flex justify-between px-4 h-[52px]"
         style={{ 
             backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : 'black',
             color: GetHeaderColor(theme) }}>
@@ -40,7 +40,7 @@ const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
             }
         </div>
         <Link href={'#search-job'}
-            className="flex gap-2 justify-start flex-row font-bold items-center no-underline w-fit"
+            className="flex gap-2 justify-start flex-row font-bold items-center my-auto no-underline w-fit px-[10px] py-[15px]"
             style={{ color: GetHeaderColor(theme), textDecoration: 'none' }}>
             <MagnifyingGlassIcon className="w-8 h-8"></MagnifyingGlassIcon>
             <div>
