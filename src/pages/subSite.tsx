@@ -6,7 +6,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
     // const htmlContent = GeneratePage(jsonObject)
     try {
-        const brandName = 'wlcareers'
+        const brandName = 'chihuahuabrewing'
         const file = await fetch(`https://nowhiring.com/api/career-live-sites/nowhiring.com%2F${brandName}`).then(res => res.text())
         // console.log(file)
         const jsonObject: SiteInterface = JSON.parse(file) as SiteInterface

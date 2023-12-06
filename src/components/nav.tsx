@@ -1,5 +1,5 @@
 import { ThemeContext } from "@/contexts/themeContext";
-import { GetHeaderColor } from "@/utilities/color";
+import { GetColorFromTheme, GetHeaderColor } from "@/utilities/color";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { useContext } from "react";
@@ -23,7 +23,9 @@ const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
     const navigation = navData.navigation
     const { theme } = useContext(ThemeContext)
     return <div className="w-full flex justify-between p-4 h-[52px]"
-        style={{ backgroundColor: theme?.headerBackgroundColor, color: GetHeaderColor(theme) }}>
+        style={{ 
+            backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : 'black',
+            color: GetHeaderColor(theme) }}>
         <div className="flex gap-2">
             {
                 navigation.map((navData) => {

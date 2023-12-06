@@ -41,6 +41,7 @@ function isValidCssValue(value: string): boolean {
   }
 
 export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
+    console.log('check', keyName)
     if(isValidCssValue(keyName)) {
         return keyName
     }else if(theme) {
@@ -56,6 +57,6 @@ export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
             return `var(---${keyName})`
        }
     }else{
-        return 'white'
+        return 'black'
     }
 }
