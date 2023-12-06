@@ -18,8 +18,10 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
             <CustomIntroTag>
                 {
-                    siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null && <Image src={siteIntro?.backgroundImage?.url ?? ''} alt={name} width={1400} height={500}
-                        className="fixed top-0 -z-40 h-fit w-full bg-top bg-no-repeat  object-cover" />
+                    siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null && <Image src={siteIntro?.backgroundImage?.url ?? ''} alt={name} width={1400} height={523}
+                        className="fixed top-0 -z-40 w-full bg-top bg-no-repeat  object-cover" style={{
+                            height: '523px'
+                        }} />
                 }
 
                 <div className="p-[30px] min-h-[450px]"
@@ -27,7 +29,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                 >
                     {/* Logo */}
                     {
-                        theme?.logoPosition === 'logo-intro' &&  theme?.logo !== null &&  <Link href={settings.homepageUrl ?? ''}>
+                        theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null &&  theme?.logo !== null &&  <Link href={settings.homepageUrl ?? ''}>
                             <Image
                                 className="mx-auto"
                                 src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />

@@ -58,6 +58,7 @@ interface ISocialMedia {
   };
 }
 interface ITheme {
+  backgroundImage: any;
   font: string;
   color: string;
   buttonColor: string;
