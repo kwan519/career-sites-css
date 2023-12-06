@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import Section from "./section"
 import { ThemeContext } from "@/contexts/themeContext"
-import { GetHeaderColor } from "@/utilities/color"
+import { GetColorFromTheme, GetHeaderColor } from "@/utilities/color"
 import Link from "next/link";
 import { FacebookIcon , InstagramIcon , LinkedInIcon, TwitterXIcon, YoutubeIcon } from "./icon/socialMediaIcon";
 
@@ -21,7 +21,7 @@ const FooterBuilder = ({ footer, socialMedia }: FooterInterface) => {
     return <div
         className="flex flex-col items-center justify-center mx-auto px-[100px] py-[20px]"
         style={{
-            backgroundColor: theme?.footerBackgroundColor,
+            backgroundColor: theme?.footerBackgroundColor ? GetColorFromTheme(theme?.footerBackgroundColor, theme) : 'black',
             color: GetHeaderColor(theme)
         }}>
         <div className="flex flex-row gap-10 footerSocialMedia mt-[20px]">

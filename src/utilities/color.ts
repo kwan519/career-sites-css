@@ -19,7 +19,8 @@ const GetFontNavColor = (color?: string) => {
 
 
 export const GetHeaderColor = (theme?: ITheme) => {
-    if(!theme) return "rgb(0, 0, 0)";
+    if(!theme) return "rgb(255, 255, 255)";
+    if(theme.headerColor === null) return "rgb(255, 255, 255)";
     if(theme.headerBackgroundColor === theme?.headerColor)
         return GetFontNavColor(theme?.headerBackgroundColor)
     return theme?.headerColor
