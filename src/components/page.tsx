@@ -25,11 +25,11 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                 }
 
                 <div className="p-[30px] min-h-[450px]"
-                    style={siteIntro.backgroundColor ?{ backgroundColor: siteIntro.backgroundColor } : {}}
+                    style={siteIntro.backgroundColor ? { backgroundColor: siteIntro.backgroundColor } : {}}
                 >
                     {/* Logo */}
                     {
-                        theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null &&  theme?.logo !== null &&  <Link href={settings.homepageUrl ?? ''}>
+                        theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
                             <Image
                                 className="mx-auto"
                                 src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
@@ -42,11 +42,11 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             </CustomIntroTag>
             <div className="bg-white">
                 {
-                    section.map((section,index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
+                    section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
                 }
             </div>
         </CustomTag>
-       {!settings.hideFooter &&  <FooterBuilder footer={{ sections: footer.sections }} socialMedia={socialMedia} />}
+        {!settings.hideFooter && <FooterBuilder footer={{ sections: footer.sections }} socialMedia={socialMedia} />}
     </main>
 }
 

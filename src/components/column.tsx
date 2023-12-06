@@ -4,10 +4,12 @@ import parse from "html-react-parser"
 import { useContext } from "react"
 import ReactPlayer from "react-player"
 import Image from 'next/image'
+import { GetColumnsClassFromTotal } from "@/utilities/columnsClass"
 
-const ColumnBuilder = ({ column }: { column: IColumn }) => {
+const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: number }) => {
     const { theme } = useContext(ThemeContext)
-    return <div>
+    const CustomVideoTag = 'customer-site-column-video' as keyof JSX.IntrinsicElements;
+    return <div className={`${GetColumnsClassFromTotal(totalColumn)}`}>
         {
             column.backgroundImage && <Image
                 className="mx-auto"
@@ -41,26 +43,32 @@ const ColumnBuilder = ({ column }: { column: IColumn }) => {
                 src={column.image?.url ?? ''} alt={column.image?.altText ?? ''} width={400} height={400} />
         }
         {
-            column.type === 'video' && <ReactPlayer
-                style={{ margin: '0 auto' }}
-                url={column.videoUrl ?? ''}
-                light={false}
-                controls
-                muted
-                config={
-                    {
-                        youtube: {
-                            playerVars: {
-                                autoplay: 1,
-                                enablejsapi: 0
-                            }
-                        },
-                        vimeo: {
-                            playerOptions: {
-                                autoplay: 1
-                            }
-                        }
-                    }} />
+            column.type === 'video' && <CustomVideoTag>
+                <div className="column-video">
+                    <ReactPlayer
+                        style={{ margin: '0 auto' }}
+                        width='100%'
+                        height='fit'
+                        url={column.videoUrl ?? ''}
+                        light={false}
+                        controls
+                        muted
+                        config={
+                            {
+                                youtube: {
+                                    playerVars: {
+                                        autoplay: 1,
+                                        enablejsapi: 0
+                                    }
+                                },
+                                vimeo: {
+                                    playerOptions: {
+                                        autoplay: 1
+                                    }
+                                }
+                            }} />
+                </div>
+            </CustomVideoTag>
 
         }
 

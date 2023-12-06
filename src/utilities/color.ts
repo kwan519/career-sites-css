@@ -57,6 +57,6 @@ export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
             return `var(---${keyName})`
        }
     }else{
-        return 'black'
+        return 'transparent'
     }
 }

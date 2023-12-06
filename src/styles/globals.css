@@ -4597,6 +4597,27 @@ swiper .swiper-container {
 
 /* KWAN EDIT */
 
+customer-site-section {
+  padding: 15px 30px;
+}
 customer-site-section.section-container:nth-child(odd).section-content {
   background-color: #f7f7f7;
+}
+
+customer-site-section p {
+  text-align: start;
+}
+
+customer-site-section  ul li {
+  display: list-item;
+  list-style: disc;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+customer-site-column-video .column-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
 }
