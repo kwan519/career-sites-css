@@ -39,7 +39,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
         }
         {
             column.type === 'image' && <Image
-                className="mx-auto"
+                className="w-full h-full object-cover"
                 src={column.image?.url ?? ''} alt={column.image?.altText ?? ''} width={400} height={400} />
         }
         {
@@ -48,11 +48,9 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
                     <ReactPlayer
                         style={{ margin: '0 auto' }}
                         width='100%'
-                        height='fit'
                         url={column.videoUrl ?? ''}
                         light={false}
                         controls
-                        muted
                         config={
                             {
                                 youtube: {
