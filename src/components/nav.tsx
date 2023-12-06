@@ -28,7 +28,7 @@ const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
             color: GetHeaderColor(theme) }}>
         <div className="flex gap-2">
             {
-                navigation.map((navData) => {
+                settings.homepageUrl && navigation.map((navData) => {
                     return <Link key={navData.name}
                         href={navData.name === 'home' ? settings.homepageUrl ?? '' : navData.page}
                         className="capitalize header-button no-underline!"
