@@ -9,6 +9,11 @@ const nextConfig = {
         hostname: "s3.amazonaws.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "career-sites.cdn.snagajob.com",
+        port: "",
+      }
     ],
   },
 }

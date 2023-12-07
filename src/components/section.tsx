@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { ThemeContext } from '@/contexts/themeContext'
 import { GetColorFromTheme } from '@/utilities/color'
 import ColumnBuilder from './column'
+import SearchBuilder from './search'
 
 interface SectionBuilderintrface {
     section: ISection
@@ -32,6 +33,9 @@ const Section = ({ section, isFooter, className }: SectionBuilderintrface) => {
                 </div>
             </SectionCustomTag>
         </div>
+    if(section.type === 'job-search') {
+        return <SearchBuilder />
+    }
 }
 
 export default Section

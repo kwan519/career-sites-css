@@ -1,6 +1,7 @@
 import PageBuilder from "@/components/page"
 import { ThemeContext } from "@/contexts/themeContext"
 import { GetServerSideProps } from "next"
+import Head from "next/head"
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const subSite = context.params?.subSite
@@ -31,6 +32,9 @@ interface SubSiteInterface {
 const SubSite = ({ site }: SubSiteInterface) => {
     //
     return <ThemeContext.Provider value={{theme: site.theme}}>
+        <Head>
+            <link  rel="stylesheet" href={`/cs${site.domain.replace('nowhiring.com', '')}/style.css`} />
+        </Head>
         <PageBuilder {...site}/>
     </ThemeContext.Provider>
 }

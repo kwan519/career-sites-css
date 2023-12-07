@@ -4621,3 +4621,22 @@ customer-site-column-video .column-video {
   padding-top: 25px;
   height: 349px;
 }
+
+/* Map Icon */
+.mNcDk.bpLs1b{
+  background-image: url(//maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png);
+  background-size: 180px 18px;
+  background-position: 0 0;
+  height: 18px;
+  width: 18px;
+}
+
+ #job-search-bar-view-toggle{
+  border-radius: 4px;
+  border: 1px solid #666;
+  cursor: pointer;
+  color: #666;
+  width: 37px;
+  height: 34px;
+  display: block;
+ }

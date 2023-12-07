@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 import Link from "next/link";
 import Section from "./section";
 import FooterBuilder from "./footer";
+import Head from "next/head";
 
 const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia }: SiteInterface) => {
     const name = pages[0].name
@@ -14,6 +15,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
     const CustomTag = 'customer-site' as keyof JSX.IntrinsicElements;
     const CustomIntroTag = 'customer-site-intro' as keyof JSX.IntrinsicElements;
     return <main contextMenu={name} className={theme?.font.toLocaleLowerCase().replaceAll(' ', '-') ?? 'open-sans'}>
+        
         <CustomTag >
             <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
             <CustomIntroTag>
