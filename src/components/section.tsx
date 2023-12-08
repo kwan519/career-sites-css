@@ -21,6 +21,10 @@ const Section = ({ section, isFooter, className }: SectionBuilderintrface) => {
             backgroundColor: section.backgroundColor ? GetColorFromTheme(section.backgroundColor, theme)  : undefined
         }}>
             <SectionCustomTag >
+                {/* Header */}
+                {section.header && section.header !== null && <div>
+                    <ColumnBuilder column={section.header} totalColumn={1}/>
+                    </div>}
                 <div
                     className={`${section.fullWidth ? '!p-0' : 'container'} ${className ?? ''}`} >
                         <div className='row'>

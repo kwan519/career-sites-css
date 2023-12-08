@@ -39,18 +39,8 @@ const SearchBuilder = () => {
     const { theme } = useContext(ThemeContext)
     const userLocation = "Pattaya, 20"
     const [searchPanelMobile, setSearchPanelMobile] = useState<boolean>(false)
-    const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([
-        { value: 'distance', label: 'Distance' },
-        { value: 'jobTitle', label: 'Job Title' },
-        { value: '5', label: '5 miles' },
-        { value: '25', label: '25 miles' },
-        { value: '50', label: '50 miles' },
-        { value: '999', label: 'Everywhere' },
-    ])
-    const [filterJobType, setFilterJobType] = useState<FilterInterface[]>([
-        { value: 'distance', label: 'Distance' },
-        { value: 'jobTitle', label: 'Job Title' },
-    ])
+    const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([])
+    const [filterJobType, setFilterJobType] = useState<FilterInterface[]>([])
     const [jobList, setJobList] = useState<{[key:string] : string | undefined}[]>([])
     const handleLoadJobs = () => {
         setSearchPanelMobile(false)
@@ -70,7 +60,6 @@ const SearchBuilder = () => {
             }
         ]
         setJobList(jobMockupData)
-        const filterListFromResultJobs = []
         console.log('do searching....')
     }
     return <div id="search-job">
@@ -86,7 +75,7 @@ const SearchBuilder = () => {
                                 <span className="input-group-addon geolocation hidden-xs hidden-sm ng-star-inserted"  >
                                     <div className="mNcDk bpLs1b"> </div></span>
                                 <MyCombobox />
-                                <span className="input-group-addon ng-star-inserted" style={{ borderRadius: '0 4px 4px 0' }}>
+                                <span className="input-group-addon ng-star-inserted" style={{ borderRadius: '0 4px 4px 0' }} onClick={handleLoadJobs}>
                                     <MagnifyingGlassIcon className="w-6 h-6" />
                                 </span>
                             </div>
