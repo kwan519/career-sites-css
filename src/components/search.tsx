@@ -7,14 +7,6 @@ import { MapIcon } from "./icon/searchIcons"
 import DropDown from "./dropdown"
 import SearchPanelMobile from "./searchPanelMobile"
 import CheckboxGroupDropdown from "./checkboxGroupDropdown"
-import {
-    Table,
-    TableHeader,
-    TableBody,
-    TableColumn,
-    TableRow,
-    TableCell
-} from "@nextui-org/table"
 
 const searchRadiusOption = [
     { value: '5', label: '5 miles' },
@@ -78,9 +70,10 @@ const SearchBuilder = () => {
             }
         ]
         setJobList(jobMockupData)
+        const filterListFromResultJobs = []
         console.log('do searching....')
     }
-    return <div>
+    return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
         <div className="row ng-star-inserted">
             <div className="container w-full mx-auto flex justify-between md:space-x-8 ">
