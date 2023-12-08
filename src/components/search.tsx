@@ -29,7 +29,7 @@ const resultHeader = [{
     label: 'Address'
 },
 {
-    key: 'shift',
+    key: 'type',
     label: 'Job Type',
 }, {
     key: 'action',
@@ -48,18 +48,35 @@ const SearchBuilder = () => {
             {
                 name: 'Software Engineer',
                 fullLocation: '2136 Declaration Dr Independence, KY, 41051',
-                shift: 'Full Time',
+                type: 'Full Time',
             }, {
                 name: 'Software Engineer',
                 fullLocation: 'Pattaya, 20',
-                shift: 'Full Time',
+                type: 'Full Time',
             }, {
                 name: 'Software Engineer',
                 fullLocation: 'Pattaya, 20',
-                shift: 'Full Time',
+                type: 'Part Time',
             }
         ]
         setJobList(jobMockupData)
+        const filterJobTypeGroup = Array.from(new Set(jobMockupData.map((item) => item.type))).map((type) => {
+            return {
+              value: type.toLowerCase().replace(/\s+/g, ''),
+              label: type,
+            };
+          });
+
+        const filterJobTitleGroup  = Array.from(new Set(jobMockupData.map((item) => item.name))).map((type) => {
+            return {
+              value: type.toLowerCase().replace(/\s+/g, ''),
+              label: type,
+            };
+          });
+
+        setFilterJobTitle(filterJobTitleGroup)
+        setFilterJobType(filterJobTypeGroup)
+
         console.log('do searching....')
     }
     return <div id="search-job">
@@ -105,28 +122,28 @@ const SearchBuilder = () => {
                         inputName="sortBy"
                         defaultValueIndex={0}
                         buttonTitle="Sort by"
-                        buttonClassName={`p-3 border border-1 border-gray-800 w-full h-[34px] text-start flex  justify-between ${jobList ? 'rounded-none' : 'rounded-r-lg '}`}
+                        buttonClassName={`p-3 border border-1 border-gray-800 w-full h-[34px] text-start flex  justify-between ${jobList.length > 0 ? 'rounded-none' : 'rounded-r-lg '}`}
                         containerClassName="w-1/2"
                         items={searchOrderByOption}
                         onApply={() => {
                             console.log('Apply')
                         }} />
                     {
-                        filterJobTitle && filterJobTitle.length > 0 && <CheckboxGroupDropdown
-                            inputName="jobType"
+                        jobList.length > 0 && <CheckboxGroupDropdown
+                            inputName="jobTitle"
                             items={filterJobTitle}
-                            buttonTitle="Job Type"
-                            buttonClassName={`p-3 border border-1 border-gray-800 w-full h-[34px] text-start flex  justify-between rounded-none`}
+                            buttonTitle="Job Title"
+                            buttonClassName={`p-3 border-y-[1px] border-gray-800 w-full h-[34px] text-start flex  justify-between rounded-none`}
                             containerClassName="w-1/2"
                             onApply={() => {
                                 console.log('Apply')
                             }} />
                     }
                     {
-                        filterJobType && filterJobType.length > 0 && <CheckboxGroupDropdown
-                            inputName="jobTitle"
+                        jobList.length > 0 && <CheckboxGroupDropdown
+                            inputName="jobType"
                             items={filterJobType}
-                            buttonTitle="Job Title"
+                            buttonTitle="Job Type"
                             buttonClassName="p-3 border border-1 border-gray-800 rounded-r-lg w-full h-[34px] text-start flex  justify-between"
                             containerClassName="w-1/2"
                             onApply={() => {
@@ -143,7 +160,7 @@ const SearchBuilder = () => {
                     <div className="p-4 font-bold">
                         {jobList.length > 0 ? `${jobList.length} jobs` : ''}
                     </div>
-                    <div className="p-2 border-l" onClick={() => setSearchPanelMobile(!searchPanelMobile)}>
+                    <div className="p-2 border-l block lg:hidden" onClick={() => setSearchPanelMobile(!searchPanelMobile)}>
                         <AdjustmentsHorizontalIcon className="w-full h-full" />
                     </div>
                 </div>
