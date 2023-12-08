@@ -11,6 +11,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@nextui-org/react": "^2.2.9",
+    "@nextui-org/system": "^2.0.15",
+    "@nextui-org/table": "^2.0.28",
+    "framer-motion": "^10.16.15",
     "grapesjs": "^0.21.7",
     "grapesjs-navbar": "^1.0.2",
     "grapesjs-preset-webpage": "^1.0.3",

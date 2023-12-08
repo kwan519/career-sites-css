@@ -121,3 +121,7 @@ interface SiteInterface {
   socialMedia: ISocialMedia;
   theme: ITheme;
 }
+
+
+// Search Interface
+interface FilterInterface  { value: string; label: string }

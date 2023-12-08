@@ -8,7 +8,7 @@ const GetFontNavColor = (color?: string) => {
     const brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
 
     // Determine the font color based on brightness
-    if (brightness > 0.5) {
+    if (brightness > 0.7) {
         // Bright color, return black
         return "rgb(0, 0, 0)";
     } else {
@@ -42,7 +42,6 @@ function isValidCssValue(value: string): boolean {
   }
 
 export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
-    console.log('check', keyName)
     if(isValidCssValue(keyName)) {
         return keyName
     }else if(theme) {
