@@ -200,7 +200,7 @@ const SearchBuilder = () => {
                         )}
                     </tr>
                         {jobList.map((row, index) =>
-                            <tr key={`rs-bd-${index}`} className="border-b-1 h-full cursor-pointer" onClick={() => console.log('click to best page')}>
+                            <tr key={`rs-bd-${index}`} className="border-b-[1px] h-full cursor-pointer" onClick={() => console.log('click to best page')}>
                                 {Object.keys(row).map(columnKey => {
                                     if(columnKey === 'name') return <td className="py-8 font-bold h-full min-w-[200px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
                                     if(columnKey === 'fullLocation') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
