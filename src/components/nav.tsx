@@ -31,7 +31,7 @@ const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
                 settings.homepageUrl && navigation.map((navData) => {
                     return <Link key={navData.name}
                         href={navData.name === 'home' ? settings.homepageUrl ?? '' : navData.page}
-                        className="capitalize header-button no-underline!"
+                        className="capitalize header-button no-underline! h-fit my-auto"
                         style={{
                             color: GetHeaderColor(theme),
                             textDecoration: 'none'
