@@ -24,7 +24,7 @@ interface IColumn {
   backgroundColor?: string;
   backgroundImage?: IImage;
   videoUrl?: string;
-  buttonlink?: Ilink;
+  buttonLink?: Ilink;
 }
 interface ISection {
   isReadOnly: boolean;

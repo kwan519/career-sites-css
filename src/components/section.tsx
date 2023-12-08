@@ -22,7 +22,7 @@ const Section = ({ section, isFooter, className }: SectionBuilderintrface) => {
         }}>
             <SectionCustomTag >
                 <div
-                    className={`container ${className ?? ''}`} >
+                    className={`${section.fullWidth ? '!p-0' : 'container'} ${className ?? ''}`} >
                         <div className='row'>
                     {
                         columns.map((column, index) => {

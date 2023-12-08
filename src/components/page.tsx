@@ -18,11 +18,11 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
 
         <CustomTag >
             <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
-            <div className="fixed top-0 h-1/2 w-full z-10"
+            <div className="fixed top-0 h-[500px] w-full z-10"
                 style={{
                     backgroundColor: siteIntro.backgroundColor ? siteIntro.backgroundColor : undefined,
                     backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
-
+                    backgroundRepeat: 'no-repeat'
                 }}
             >
             </div>
