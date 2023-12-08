@@ -18,20 +18,18 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
         
         <CustomTag >
             <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
-            <CustomIntroTag>
-                {
-                    siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null && <Image src={siteIntro?.backgroundImage?.url ?? ''} alt={name} width={1400} height={523}
-                        className="fixed top-0 -z-40 w-full bg-top bg-no-repeat  object-cover" style={{
-                            height: '523px'
-                        }} />
-                }
+            <div className="fixed top-0 h-[550px] w-full z-10"
+                    style={{ backgroundColor: siteIntro.backgroundColor ?  siteIntro.backgroundColor  : undefined,
+                        backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
+                        backgroundSize: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ?"cover" : undefined ,
+                        backgroundPosition: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ?"center center" : undefined
 
-                <div className="p-[30px] min-h-[450px]"
-                    style={siteIntro.backgroundColor ? { backgroundColor: siteIntro.backgroundColor } : {}}
-                >
-                    {/* Logo */}
+                    }}
+                >                     
+                </div>   
+                <div className="min-h-[450px] mt-12 z-20 py-[10%]">
                     {
-                        theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
+                        (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null) && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
                             <Image
                                 className="mx-auto"
                                 src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
@@ -40,9 +38,8 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                     {
                         siteIntro.html && parse(siteIntro.html)
                     }
-                </div>
-            </CustomIntroTag>
-            <div className="bg-white">
+                    </div>   
+            <div className="bg-white z-20">
                 {
                     section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
                 }
