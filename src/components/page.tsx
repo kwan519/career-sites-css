@@ -15,30 +15,29 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
     const CustomTag = 'customer-site' as keyof JSX.IntrinsicElements;
     const CustomIntroTag = 'customer-site-intro' as keyof JSX.IntrinsicElements;
     return <main contextMenu={name} className={theme?.font.toLocaleLowerCase().replaceAll(' ', '-') ?? 'open-sans'}>
-        
+
         <CustomTag >
             <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
-            <div className="fixed top-0 h-[550px] w-full z-10"
-                    style={{ backgroundColor: siteIntro.backgroundColor ?  siteIntro.backgroundColor  : undefined,
-                        backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
-                        backgroundSize: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ?"cover" : undefined ,
-                        backgroundPosition: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ?"center center" : undefined
+            <div className="fixed top-0 h-1/2 w-full z-10"
+                style={{
+                    backgroundColor: siteIntro.backgroundColor ? siteIntro.backgroundColor : undefined,
+                    backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
 
-                    }}
-                >                     
-                </div>   
-                <div className="min-h-[450px] mt-12 z-20 py-[10%]">
-                    {
-                        (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null) && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
-                            <Image
-                                className="mx-auto"
-                                src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
-                        </Link>
-                    }
-                    {
-                        siteIntro.html && parse(siteIntro.html)
-                    }
-                    </div>   
+                }}
+            >
+            </div>
+            <div className="mt-12 z-20 py-[30px] min-h-[300px]">
+                {
+                    (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null) && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
+                        <Image
+                            className="mx-auto"
+                            src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
+                    </Link>
+                }
+                {
+                    siteIntro.html && parse(siteIntro.html)
+                }
+            </div>
             <div className="bg-white z-20">
                 {
                     section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
