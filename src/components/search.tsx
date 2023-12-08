@@ -29,20 +29,28 @@ const searchOrderByOption = [
     { value: 'jobTitle', label: 'Job Title' },
 ]
 
-const resultHeader = ['Job Title', 'Address', 'Job Type', '']
+const resultHeader = [{
+    key: 'name',
+    label: 'Job Title',
+}, {
+    key: 'fullLocation',
+    label: 'Address'
+},
+{
+    key: 'shift',
+    label: 'Job Type',
+}, {
+    key: 'action',
+    label: ''
+}]
 const SearchBuilder = () => {
     const { theme } = useContext(ThemeContext)
+    const userLocation = "Pattaya, 20"
     const [searchPanelMobile, setSearchPanelMobile] = useState<boolean>(false)
     const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([
         { value: 'distance', label: 'Distance' },
         { value: 'jobTitle', label: 'Job Title' },
         { value: '5', label: '5 miles' },
-        { value: '10', label: '10 miles' },
-        { value: '25', label: '25 miles' },
-        { value: '50', label: '50 miles' },
-        { value: '999', label: 'Everywhere' },
-        { value: '5', label: '5 miles' },
-        { value: '10', label: '10 miles' },
         { value: '25', label: '25 miles' },
         { value: '50', label: '50 miles' },
         { value: '999', label: 'Everywhere' },
@@ -51,9 +59,25 @@ const SearchBuilder = () => {
         { value: 'distance', label: 'Distance' },
         { value: 'jobTitle', label: 'Job Title' },
     ])
-    const [jobList, setJobList] = useState<string[]>(['d', 'a'])
+    const [jobList, setJobList] = useState<{[key:string] : string | undefined}[]>([])
     const handleLoadJobs = () => {
         setSearchPanelMobile(false)
+        const jobMockupData = [
+            {
+                name: 'Software Engineer',
+                fullLocation: '2136 Declaration Dr Independence, KY, 41051',
+                shift: 'Full Time',
+            }, {
+                name: 'Software Engineer',
+                fullLocation: 'Pattaya, 20',
+                shift: 'Full Time',
+            }, {
+                name: 'Software Engineer',
+                fullLocation: 'Pattaya, 20',
+                shift: 'Full Time',
+            }
+        ]
+        setJobList(jobMockupData)
         console.log('do searching....')
     }
     return <div>
@@ -135,7 +159,7 @@ const SearchBuilder = () => {
             <div className="container w-full mx-auto">
                 <div className="bg-[#eee] h-[40px] flex justify-between">
                     <div className="p-4 font-bold">
-                        {jobList.length} jobs
+                        {jobList.length > 0 ? `${jobList.length} jobs` : ''}
                     </div>
                     <div className="p-2 border-l" onClick={() => setSearchPanelMobile(!searchPanelMobile)}>
                         <AdjustmentsHorizontalIcon className="w-full h-full" />
@@ -154,28 +178,53 @@ const SearchBuilder = () => {
             }
 
             {/* Search Result List */}
-            <div className="container w-full mx-auto">
-                <Table removeWrapper aria-label="Example table with dynamic content">
-                    <TableHeader>
-                        {resultHeader.map((column, index) =>
-                            <TableColumn key={`rs-hd-${index}`} className="p-4 font-bold justify-between rounded-none"
+            {
+                jobList.length === 0 ? <div className="container w-full mx-auto">
+                    <div className=" flex flex-col justify-center w-full text-center py-[20px]">
+                        <div className="p-4 font-bold text-[24px]">
+                            No jobs near {userLocation}
+                        </div>
+                        <div className="p-2" >
+                            Reset your filters, search a new location or check back later for new jobs.
+                        </div>
+                    </div>
+                </div> : <div className="container w-full mx-auto">
+                <table className="w-full">
+                    <tr >
+                        {resultHeader.map((column) =>
+                            <th key={column.key} className="py-4 px-2 font-bold rounded-none h-[38px]"
                                 style={{
                                     backgroundColor: theme?.headerBackgroundColor,
                                     color: GetHeaderColor(theme),
-                                    fontSize: '18px'
-                                }}>{column}</TableColumn>
+                                    fontSize: '16px'
+                                }}>{column.label}</th>
                         )}
-                    </TableHeader>
-                    <TableBody>
+                    </tr>
                         {jobList.map((row, index) =>
-                            <TableRow key={`rs-bd-${index}`}>
-                                {(columnKey) => <TableCell>TESTING</TableCell>}
-                            </TableRow>
+                            <tr key={`rs-bd-${index}`} className="border-b-1 h-full cursor-pointer" onClick={() => console.log('click to best page')}>
+                                {Object.keys(row).map(columnKey => {
+                                    if(columnKey === 'name') return <td className="py-8 font-bold h-full min-w-[200px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if(columnKey === 'fullLocation') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if(columnKey === 'shift') return <td className="min-w-[150px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                })}
+                                <td className="flex justify-end py-8 gap-4">
+                                    <button className="p-4 rounded-md" 
+                                        style={{color: GetColorFromTheme('headerBackgroundColor', theme), 
+                                        border: `1px solid ${GetColorFromTheme('headerBackgroundColor', theme)}`}}
+                                        onClick={(e) =>{
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            console.log('share')
+                                        }}>Share</button>
+                                    <button className="p-4 rounded-md" style={{backgroundColor: GetColorFromTheme('headerBackgroundColor', theme), color: GetHeaderColor(theme)}}>Apply</button>
+                                </td>
+        
+                            </tr>
                         )}
-                    </TableBody>
-                </Table>
+                </table>
             </div>
 
+            }
         </div>
     </div>
 }

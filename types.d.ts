@@ -125,3 +125,22 @@ interface SiteInterface {
 
 // Search Interface
 interface FilterInterface  { value: string; label: string }
+interface JobInterface {
+  jobId: string;
+  name: string;
+  branch: BranchType;
+  category: string;
+  type: JobType | string;
+category: string;
+  shift: ShiftType | string;
+  hours: HourType | string;
+  postedDate: string; 
+  expireDate: string;
+  pay: string;
+payType: string;
+  detailHTML?: string ;
+  shortDescriptionHTML?: string ;
+fullLocation?: string;
+shortLocation?: string;
+shortDetail?: string;
+}

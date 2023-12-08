@@ -9,7 +9,6 @@ import { GetColumnsClassFromTotal } from "@/utilities/columnsClass"
 const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: number }) => {
     const { theme } = useContext(ThemeContext)
     const CustomVideoTag = 'customer-site-column-video' as keyof JSX.IntrinsicElements;
-    console.log(column.type === 'cta' ? column : '')
     return <div className={`relative ${GetColumnsClassFromTotal(totalColumn)} ${column.type === 'cta' ? '!p-0' : ''}`}>
         {
             column.type === 'text' && <div className='mx-auto customer-site-column-text-content'
@@ -36,7 +35,8 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
         {
             column.type === 'image' && <Image
                 className="w-full h-full object-cover"
-                src={column.image?.url ?? ''} alt={column.image?.altText ?? ''} width={400} height={400} />
+                src={column.image?.url ?? ''} 
+                alt={column.image?.altText ?? ''} width={400} height={400} />
         }
         {
             column.type === 'video' && <CustomVideoTag>

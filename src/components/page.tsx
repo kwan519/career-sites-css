@@ -6,7 +6,6 @@ import parse from 'html-react-parser';
 import Link from "next/link";
 import Section from "./section";
 import FooterBuilder from "./footer";
-import Head from "next/head";
 
 const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia }: SiteInterface) => {
     const name = pages[0].name
@@ -38,7 +37,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                     siteIntro.html && parse(siteIntro.html)
                 }
             </div>
-            <div className="bg-white z-20">
+            <div className="bg-white z-50">
                 {
                     section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
                 }
