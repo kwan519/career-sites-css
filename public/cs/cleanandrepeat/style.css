@@ -1,0 +1,109 @@
+customer-site>div:nth-child(1) {
+    background-color: rgb(1, 161, 165) !important;
+    padding: 10px 30px;
+    height: 60px;
+}
+
+customer-site>div:first-child>div:nth-child(2) {
+    padding: 0;
+}
+
+customer-site>div:nth-child(2) {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 523px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+customer-site>div:nth-child(3)>h3,
+customer-site>div:nth-child(3)>h4 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .5) !important;
+}
+
+customer-site>div:nth-child(3)>a {
+    width: 260px !important;
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+customer-site>div:nth-child(3) {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    justify-content: center;
+    height: 100%;
+    padding: 30px 30px;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 3rem 0 !important;
+    height: 450px;
+}
+
+#__next>main:first-child>div:last-child {
+    background-color: rgb(1, 161, 165) !important;
+}
+
+customer-site>div:nth-child(3)>a>img {
+    max-width: 260px;
+}
+
+customer-site>div:first-child>a:last-child {
+    padding: 0px 10px !important;
+}
+
+
+.bg-white>div:nth-child(4) {
+    background-size: cover;
+    background-position: center top;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+    min-height: 200px;
+    display: flex;
+    flex: 1 0;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bg-white>div:nth-child(4)>customer-site-section:first-child {
+    padding: 30px 0;
+}
+
+.bg-white>div:nth-child(5) {
+    display: block;
+    padding: 30px 0 30px;
+    position: relative;
+    background: #fff;
+}
+
+.bg-white>div:nth-child(5)>h3 {
+    margin-bottom: 20px;
+    margin-top: 0;
+    color: rgb(1, 161, 165);
+}
+
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .bg-white>div:nth-child(4) {
+        min-height: 330px;
+    }
+
+    .bg-white>div:nth-child(4)>customer-site-section:first-child {
+        padding: 15px 0px;
+    }
+
+    .bg-white>div:nth-child(5) {
+        padding: 50px 0 30px;
+    }
+}
