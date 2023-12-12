@@ -19,7 +19,7 @@ const FooterBuilder = ({ footer, socialMedia }: FooterInterface) => {
     const sections = footer.sections
     console.log('theme',theme)
     return <div
-        className="relative flex flex-col items-center justify-center mx-auto px-[100px] py-[20px] z-20"
+        className="relative flex flex-col items-center justify-center mx-auto px-[100px] py-[20px] z-20 footer-box"
         style={{
             backgroundColor: theme?.footerBackgroundColor ? GetColorFromTheme(theme?.footerBackgroundColor, theme) : theme?.color ? theme?.color : 'black',
             color: GetHeaderColor(theme)
