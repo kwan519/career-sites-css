@@ -1,0 +1,55 @@
+.ng-star-inserted {
+    margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+
+    .ng-star-inserted>div:nth-child(2) {
+        background-color: #fff;
+        box-shadow: unset;
+    }
+
+    .ng-star-inserted>div:nth-child(2)>div {
+        background-color: #eee;
+    }
+}
+
+customer-site>div:nth-child(2) {
+    background-size: cover;
+    background-position: center;
+}
+
+customer-site>div:nth-child(3) {
+    margin-top: 52px !important;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width:1024px) {
+    .customer-site-column-text-content>h3 {
+        margin-top: 0;
+    }
+}
+
+customer-site-column-video .column-video {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 360px !important;
+    max-width: 525px;
+    margin: auto;
+}
+
+img {
+    max-width: 525px !important;
+    margin: auto;
+}
+
+div#search-job {
+    padding: 50px 0 30px;
+}
