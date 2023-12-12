@@ -37,7 +37,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                     siteIntro.html && parse(siteIntro.html)
                 }
             </div>
-            <div className="bg-white z-50">
+            <div className="bg-white z-40">
                 {
                     section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section} index={index}></Section>)
                 }

@@ -18,6 +18,7 @@ const GetFontNavColor = (color?: string) => {
 }
 
 
+// Font Color
 export const GetHeaderColor = (theme?: ITheme) => {
     if(!theme) return "rgb(255, 255, 255)";
     if(theme.headerColor === null) return "rgb(255, 255, 255)";
@@ -47,15 +48,15 @@ export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
     }else if(theme) {
        switch (keyName) {
         case 'headerColor':
-            return theme.headerColor
+            return theme.headerColor ? theme.headerColor : theme.color
         case 'headerBackgroundColor':
-            return theme.headerBackgroundColor
+            return theme.headerBackgroundColor ? theme.headerBackgroundColor : theme.color
         case 'footerColor': 
-            return theme.footerColor
+            return theme.footerColor ? theme.footerColor : theme.color
         case 'footerBackgroundColor':
-            return theme.footerBackgroundColor
+            return theme.footerBackgroundColor ? theme.footerBackgroundColor : theme.color
         default:
-            return `var(---${keyName})`
+            return theme.color ? theme.color : `var(---${keyName})`
        }
     }else{
         return 'transparent'

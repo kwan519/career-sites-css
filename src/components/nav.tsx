@@ -22,9 +22,9 @@ interface NavBuilderInterface {
 const NavBuilder = ({ navData, settings }: NavBuilderInterface) => {
     const navigation = navData.navigation
     const { theme } = useContext(ThemeContext)
-    return <div className="w-full flex justify-between px-4 h-[52px] z-20"
+    return <div className="fixed w-full flex justify-between px-4 h-[52px] z-50"
         style={{
-            backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : 'black',
+            backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) :  theme?.color ? theme.color : 'black',
             color: GetHeaderColor(theme)
         }}>
         <div className="flex gap-2">
