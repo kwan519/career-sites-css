@@ -1,0 +1,68 @@
+.ng-star-inserted {
+    margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+    .ng-star-inserted>div:nth-child(2) {
+        background-color: #fff;
+        box-shadow: unset;
+    }
+
+    .ng-star-inserted>div:nth-child(2)>div {
+        background-color: #eee;
+    }
+
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+}
+
+customer-site>div:nth-child(2) {
+    background-size: cover;
+    background-position: center;
+}
+
+customer-site>div:nth-child(3) {
+    margin-top: 52px !important;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div.z-40 img {
+    max-width: 525px !important;
+    margin: auto;
+}
+
+div#search-job {
+    padding: 50px 0 30px;
+}
+
+customer-site>div:nth-child(3) img {
+    width: 100%;
+    max-width: 260px;
+}
+
+ul {
+    padding-left: 30px !important;
+}
+
+@media (min-width: 768px) {
+
+    .sc-4 {
+        min-height: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sc-4 .row>div>div {
+        width: 65%;
+    }
+
+}
