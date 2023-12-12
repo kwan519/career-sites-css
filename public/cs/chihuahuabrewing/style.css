@@ -19,6 +19,10 @@ div#search-job {
 ul {
     padding-left: 30px !important;
 }
+/* footer */
+.sc-undefined {
+    padding: 0 15px;
+}
 
 
 @media (min-width:320px) {
