@@ -50,6 +50,10 @@ ul {
     padding-left: 30px !important;
 }
 
+.job-detail p {
+    text-align: start;
+}
+
 
 @media (min-width:320px) {
     .fixed.top-0.h-\[500px\].w-full.z-10 {
