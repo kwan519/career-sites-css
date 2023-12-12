@@ -4,7 +4,11 @@
 }
 .mt-12.z-20.py-\[30px\].min-h-\[300px\] {
     min-height: 420px;
-    padding-top: 70px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 [class*=sc] {
     padding-top: 30px;
