@@ -95,7 +95,7 @@ customer-site>div:first-child>a:last-child {
 }
 
 ul {
-    padding-left: 30px;
+    padding-left: 30px !important;
 }
 
 @media (min-width: 768px) {
