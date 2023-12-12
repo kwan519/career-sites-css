@@ -1,3 +1,5 @@
+import { color } from "framer-motion";
+
 const GetFontNavColor = (color?: string) => {
     if(!color) return "rgb(0, 0, 0)"
 
@@ -36,14 +38,23 @@ function isValidCssValue(value: string): boolean {
   
     
       // Regular expression for a simple CSS color value (hex, rgb, or color names)
-      const cssColorPattern = /^(#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})|rgb\(\s?\d+\s?,\s?\d+\s?,\s?\d+\s?\))$/;
-  
+      const cssColorPattern = /^(#([0-9a-fA-F]{3}|[0-9a-fA-F]{8})|rgb\(\s?\d+\s?,\s?\d+\s?,\s?\d+\s?\))$/;
+
       // Check if the input value matches the CSS color pattern
       return cssColorPattern.test(value) || cssColorNames.includes(value.toLowerCase());
-  }
+    }
+
+function cleanHexColor(colorString: string) {
+    if(colorString.startsWith('#')) {
+        return colorString.slice(0,7)
+    }
+    return colorString
+}
 
 export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
+    console.log(keyName)
     if(isValidCssValue(keyName)) {
+        console.log('is found css')
         return keyName
     }else if(theme) {
        switch (keyName) {

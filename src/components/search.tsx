@@ -82,7 +82,6 @@ const SearchBuilder = () => {
     const handleJobDetail = (jobId: string) => {
         
     }
-    console.log(GetColorFromTheme('headerBackgroundColor', theme))
     return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
         <div className="row ng-star-inserted">
