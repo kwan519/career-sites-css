@@ -1,0 +1,15 @@
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+}
+
+customer-site>div:nth-child(3) {
+    margin-top: 52px !important;
+    min-height: 200px;
+}
+
+customer-site>div:nth-child(3) img {
+    width: auto;
+}
