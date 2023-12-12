@@ -53,6 +53,9 @@ ul {
 .job-detail p {
     text-align: start;
 }
+.job-detail-action a {
+    text-decoration: none !important;
+}
 
 
 @media (min-width:320px) {

@@ -164,6 +164,7 @@ payType: string;
 fullLocation?: string;
 shortLocation?: string;
 shortDetail?: string;
+applyUrl?: srting;
 }
 
 interface LocationDetailType {
