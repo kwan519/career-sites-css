@@ -1,0 +1,54 @@
+.ng-star-inserted {
+    margin: 0 !important;
+}
+
+.container {
+    width: auto !important;
+}
+
+customer-site>div:first-child>div {
+    background-size: cover;
+}
+
+customer-site>div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 450px;
+}
+
+div#search-job {
+    padding: 50px 0 30px;
+}
+
+@media (min-width: 768px) {
+    .sc-5,
+    .sc-7 {
+        min-height: 330px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .sc-9 .row>div {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sc-4 .row>div>div {
+        padding: 15px;
+    }
+
+    .sc-5 .row>div>div,
+    .sc-7 .row>div>div {
+        width: 65%;
+    }
+
+}
+
+customer-site-column-video .column-video {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    max-width: 516px;
+    margin: auto;
+}
