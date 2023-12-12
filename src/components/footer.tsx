@@ -14,10 +14,9 @@ const GenerateSocialMedia = () => {
 }
 
 const FooterBuilder = ({ footer, socialMedia }: FooterInterface) => {
-    console.log('socialMedia',socialMedia)
     const { theme } = useContext(ThemeContext)
     const sections = footer.sections
-    console.log('theme',theme)
+    console.log('build footer')
     return <div
         className="relative flex flex-col items-center justify-center mx-auto px-[100px] py-[20px] z-20 footer-box"
         style={{

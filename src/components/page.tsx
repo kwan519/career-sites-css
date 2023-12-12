@@ -12,7 +12,6 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
     const section = pages[0].sections
     const { theme } = useContext(ThemeContext)
     const CustomTag = 'customer-site' as keyof JSX.IntrinsicElements;
-    const CustomIntroTag = 'customer-site-intro' as keyof JSX.IntrinsicElements;
     return <main contextMenu={name} className={theme?.font.toLocaleLowerCase().replaceAll(' ', '-') ?? 'open-sans'}>
 
         <CustomTag >

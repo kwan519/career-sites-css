@@ -76,8 +76,8 @@ interface ITheme {
 }
 interface SiteInterface {
   owner: {
-    Id: string;
-    Type: string;
+    id: string;
+    type: string;
   };
   domain: string;
   images: IImage[];
@@ -164,4 +164,19 @@ payType: string;
 fullLocation?: string;
 shortLocation?: string;
 shortDetail?: string;
+applyUrl?: srting;
+}
+
+interface LocationDetailType {
+  streetAddress?: string;
+  addressLocality?: string;
+  addressRegion: string;
+  postcode: string;
+  country: string;
+}
+
+interface BranchType {
+  branchId: string;
+  branchName: string;
+branchLogoUrl?: string;
 }
