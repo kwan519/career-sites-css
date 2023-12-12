@@ -14,6 +14,13 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
+.sc-5 {
+    min-height: 330px;
+}
+.sc-7 {
+    min-height: 330px;
+    background-size: 100% !important;
+}
 .ng-star-inserted {
     margin: 0 !important;
 }
@@ -31,8 +38,8 @@ ul {
 
 @media (min-width:320px) {
     .fixed.top-0.h-\[500px\].w-full.z-10 {
-        background-size: cover;
-        height: 100%;
+        background-size: contain;
+        height: 50%;
         background-position: center;
     }
 }
