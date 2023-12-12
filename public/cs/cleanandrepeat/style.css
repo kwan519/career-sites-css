@@ -94,6 +94,10 @@ customer-site>div:first-child>a:last-child {
     margin-left: 0 !important;
 }
 
+ul {
+    padding-left: 30px;
+}
+
 @media (min-width: 768px) {
     .bg-white>div:nth-child(4) {
         min-height: 330px;
