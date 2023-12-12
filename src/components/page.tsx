@@ -39,7 +39,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             </div>
             <div className="bg-white z-50">
                 {
-                    section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section}></Section>)
+                    section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section} index={index}></Section>)
                 }
             </div>
         </CustomTag>

@@ -8,13 +8,14 @@ interface SectionBuilderintrface {
     section: ISection
     isFooter?: boolean
     className?: string
+    index?: number
 }
-const Section = ({ section, isFooter, className }: SectionBuilderintrface) => {
+const Section = ({ section, isFooter, className, index }: SectionBuilderintrface) => {
     const columns = section.columns
     const {theme} = useContext(ThemeContext)
     const SectionCustomTag = 'customer-site-section' as keyof JSX.IntrinsicElements;
     if (section.type === "content")
-        return <div  className={`${isFooter ? 'section-container-footer' : 'section-container'} section-content `}   style={{
+        return <div  className={`${isFooter ? 'section-container-footer' : 'section-container'} section-content sc-${index}`}   style={{
             backgroundImage: section.backgroundImage?.url ? `url(${section.backgroundImage?.url})` : undefined,
             backgroundSize: section.backgroundImage?.url  ?"cover" : undefined ,
             backgroundPosition: section.backgroundImage?.url  ?"center center" : undefined,
