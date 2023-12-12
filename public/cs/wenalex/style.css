@@ -1,0 +1,20 @@
+.ng-star-inserted {
+    margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+    .ng-star-inserted>div:nth-child(2) {
+        background-color: #fff;
+        box-shadow: unset;
+    }
+    .ng-star-inserted>div:nth-child(2)>div {
+        background-color: #eee;
+    }
+}
+
+.sc-3 .row {
+    margin: 0 !important;
+}
+div#search-job {
+    padding: 15px 0 30px;
+}
