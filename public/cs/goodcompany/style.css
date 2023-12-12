@@ -2,6 +2,11 @@
     margin: 0 !important;
 }
 
+img {
+    max-width: 525px !important;
+    margin: auto;
+}
+
 .container {
     width: auto !important;
 }
@@ -22,6 +27,7 @@ div#search-job {
 }
 
 @media (min-width: 768px) {
+
     .sc-5,
     .sc-7 {
         min-height: 330px;
@@ -29,6 +35,7 @@ div#search-job {
         flex-direction: column;
         justify-content: center;
     }
+
     .sc-9 .row>div {
         width: 100% !important;
     }
@@ -49,6 +56,14 @@ div#search-job {
 customer-site-column-video .column-video {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    height: 360px !important;
     max-width: 516px;
     margin: auto;
+}
+
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
 }
