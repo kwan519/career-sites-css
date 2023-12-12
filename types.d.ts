@@ -144,3 +144,24 @@ fullLocation?: string;
 shortLocation?: string;
 shortDetail?: string;
 }
+
+interface JobDetailType {
+  jobId: string;
+  name: string;
+  location: LocationDetailType;
+  branch: BranchType;
+  category: string;
+  type: JobType | string;
+category: string;
+  shift: ShiftType | string;
+  hours: HourType | string;
+  postedDate: string; 
+  expireDate: string;
+  pay: string;
+payType: string;
+  detailHTML?: string ;
+  shortDescriptionHTML?: string ;
+fullLocation?: string;
+shortLocation?: string;
+shortDetail?: string;
+}

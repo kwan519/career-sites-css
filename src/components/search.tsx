@@ -1,6 +1,6 @@
 import { ThemeContext } from "@/contexts/themeContext"
 import { GetColorFromTheme, GetHeaderColor } from "@/utilities/color"
-import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from "@heroicons/react/20/solid"
+import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon, ShareIcon } from "@heroicons/react/20/solid"
 import { useContext, useState } from "react"
 import MyCombobox from "./combobox"
 import { MapIcon } from "./icon/searchIcons"
@@ -41,7 +41,7 @@ const SearchBuilder = () => {
     const [searchPanelMobile, setSearchPanelMobile] = useState<boolean>(false)
     const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([])
     const [filterJobType, setFilterJobType] = useState<FilterInterface[]>([])
-    const [jobList, setJobList] = useState<{[key:string] : string | undefined}[]>([])
+    const [jobList, setJobList] = useState<{ [key: string]: string | undefined }[]>([])
     const handleLoadJobs = () => {
         setSearchPanelMobile(false)
         const jobMockupData = [
@@ -62,23 +62,27 @@ const SearchBuilder = () => {
         setJobList(jobMockupData)
         const filterJobTypeGroup = Array.from(new Set(jobMockupData.map((item) => item.type))).map((type) => {
             return {
-              value: type.toLowerCase().replace(/\s+/g, ''),
-              label: type,
+                value: type.toLowerCase().replace(/\s+/g, ''),
+                label: type,
             };
-          });
+        });
 
-        const filterJobTitleGroup  = Array.from(new Set(jobMockupData.map((item) => item.name))).map((type) => {
+        const filterJobTitleGroup = Array.from(new Set(jobMockupData.map((item) => item.name))).map((type) => {
             return {
-              value: type.toLowerCase().replace(/\s+/g, ''),
-              label: type,
+                value: type.toLowerCase().replace(/\s+/g, ''),
+                label: type,
             };
-          });
+        });
 
         setFilterJobTitle(filterJobTitleGroup)
         setFilterJobType(filterJobTypeGroup)
 
         console.log('do searching....')
     }
+    const handleJobDetail = (jobId: string) => {
+        
+    }
+    console.log(GetColorFromTheme('headerBackgroundColor', theme))
     return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
         <div className="row ng-star-inserted">
@@ -155,8 +159,8 @@ const SearchBuilder = () => {
                 </div>
             </div>
             {/* Search filter with radius for Mobile */}
-            <div className="container w-full mx-auto">
-                <div className="bg-[#eee] h-[40px] flex justify-between">
+            <div className="container w-full mx-auto shadow-md md:shadow-none bg-[#eee] md:bg-transparent ">
+                <div className="bg-transparent md:bg-[#eee] h-[40px] flex justify-between">
                     <div className="p-4 font-bold">
                         {jobList.length > 0 ? `${jobList.length} jobs` : ''}
                     </div>
@@ -188,40 +192,60 @@ const SearchBuilder = () => {
                         </div>
                     </div>
                 </div> : <div className="container w-full mx-auto">
-                <table className="w-full">
-                    <tr >
-                        {resultHeader.map((column) =>
-                            <th key={column.key} className="py-4 px-2 font-bold rounded-none h-[38px]"
-                                style={{
-                                    backgroundColor: theme?.headerBackgroundColor,
-                                    color: GetHeaderColor(theme),
-                                    fontSize: '16px'
-                                }}>{column.label}</th>
-                        )}
-                    </tr>
+                    <table className="w-full">
+                        <tr className="hidden md:table-row">
+                            {resultHeader.map((column) =>
+                                <th key={column.key} className="py-4 px-2 font-bold rounded-none h-[38px]"
+                                    style={{
+                                        backgroundColor: theme?.headerBackgroundColor ?? theme?.color,
+                                        color: GetHeaderColor(theme),
+                                        fontSize: '16px'
+                                    }}>{column.label}</th>
+                            )}
+                        </tr>
                         {jobList.map((row, index) =>
-                            <tr key={`rs-bd-${index}`} className="border-b-[1px] h-full cursor-pointer" onClick={() => console.log('click to best page')}>
+                            <tr key={`rs-bd-${index}`} className="hidden md:table-row border-b-[1px] h-full cursor-pointer" onClick={() => console.log('click to best page')}>
                                 {Object.keys(row).map(columnKey => {
-                                    if(columnKey === 'name') return <td className="py-8 font-bold h-full min-w-[200px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
-                                    if(columnKey === 'fullLocation') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
-                                    if(columnKey === 'shift') return <td className="min-w-[150px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if (columnKey === 'name') return <td className="py-8 font-bold h-full min-w-[200px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if (columnKey === 'fullLocation') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if (columnKey === 'type') return <td className="min-w-[150px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
                                 })}
                                 <td className="flex justify-end py-8 gap-4">
-                                    <button className="p-4 rounded-md" 
-                                        style={{color: GetColorFromTheme('headerBackgroundColor', theme), 
-                                        border: `1px solid ${GetColorFromTheme('headerBackgroundColor', theme)}`}}
-                                        onClick={(e) =>{
+                                    <button className="p-4 rounded-md"
+                                        style={{
+                                            color: GetColorFromTheme('headerBackgroundColor', theme),
+                                            border: `1px solid ${GetColorFromTheme('headerBackgroundColor', theme)}`
+                                        }}
+                                        onClick={(e) => {
                                             e.preventDefault()
                                             e.stopPropagation()
                                             console.log('share')
                                         }}>Share</button>
-                                    <button className="p-4 rounded-md" style={{backgroundColor: GetColorFromTheme('headerBackgroundColor', theme), color: GetHeaderColor(theme)}}>Apply</button>
+                                    <button className="p-4 rounded-md" style={{ backgroundColor: GetColorFromTheme('headerBackgroundColor', theme), color: GetHeaderColor(theme) }}>Apply</button>
                                 </td>
-        
+
                             </tr>
                         )}
-                </table>
-            </div>
+                        {jobList.map((row, index) => <tr key={`rs-bd-${index}`} className="md:hidden border-b-[1px] h-full cursor-pointer" onClick={() => console.log('click to best page')}>
+                            <div className="flex justify-between py-8" onClick={() => console.log('click to best page')}>
+                                <div>
+                                    {Object.keys(row).map(columnKey => {
+                                        if (columnKey === 'name') return <div className="whitespace-pre-wrap font-bold ">{row[columnKey]}</div>
+                                        if (columnKey === 'fullLocation') return <div className="whitespace-pre-wrap">{row[columnKey]}</div>
+                                        if (columnKey === 'type') return <div className="whitespace-pre-wrap">{row[columnKey]}</div>
+                                    })}
+                                </div>
+                                <div onClick={(e) => {
+                                    e.preventDefault()
+                                    e.stopPropagation()
+                                    console.log('share')
+                                }}>
+                                    <ShareIcon className="w-10 h-10 fill-slate-400" />
+                                </div>
+                            </div>
+                        </tr>)}
+                    </table>
+                </div>
 
             }
         </div>

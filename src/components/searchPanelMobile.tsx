@@ -62,7 +62,7 @@ const SearchPanelMobile = ({ searchRadiusOption, searchOrderByOption, filterJobT
                         <div className="cursor-pointer w-full border border-slate-800 rounded-lg text-center p-4"
                             onClick={() => onHandleApply()}>Reset Filters</div>
                         <div className="cursor-pointer w-full border rouded-lg text-center p-4 "
-                            style={{ backgroundColor: theme?.headerBackgroundColor, color: GetHeaderColor(theme) }}
+                            style={{ backgroundColor: theme?.headerBackgroundColor ?? theme?.color, color: GetHeaderColor(theme) }}
                             onClick={() => onHandleApply()}>Apply Filters</div>
                     </div>
                 </div>
