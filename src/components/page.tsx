@@ -8,7 +8,7 @@ import Section from "./section";
 import FooterBuilder from "./footer";
 import { useRouter } from "next/router";
 
-const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia }: SiteInterface) => {
+const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia,domain }: SiteInterface) => {
     const router = useRouter()
     const name = pages[0].name
     const section = pages[0].sections
@@ -17,11 +17,11 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
     return <main contextMenu={name} className={theme?.font.toLocaleLowerCase().replaceAll(' ', '-') ?? 'open-sans'}>
 
         <CustomTag >
-            <NavBuilder navData={{ navigation }} settings={{ ...settings }}></NavBuilder>
+            <NavBuilder navData={{ navigation }} settings={{ ...settings }} domain={domain}></NavBuilder>
             <div className="fixed top-0 h-[500px] w-full z-10"
                 style={{
                     backgroundColor: siteIntro.backgroundColor ? siteIntro.backgroundColor : undefined,
-                    backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
+                    backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(https://cdn.hiringtoday.com/${domain}/images/${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}
@@ -32,7 +32,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                     (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null || theme?.logoPosition === 'logo-header-and-intro') && theme?.logo !== null && <Link href={settings.homepageUrl ?? router.asPath}>
                         <Image
                             className="mx-auto"
-                            src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
+                            src={theme?.logo.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
                     </Link>
                 }
                 {
@@ -41,7 +41,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             </div>
             <div className="bg-white z-40">
                 {
-                    section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section} index={index}></Section>)
+                    section.map((section, index) => <Section key={`section-${section.type}-${index}`} section={section} index={index} domain={domain}></Section>)
                 }
             </div>
         </CustomTag>

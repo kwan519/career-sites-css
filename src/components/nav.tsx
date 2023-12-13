@@ -13,6 +13,7 @@ interface INav {
 }
 interface NavBuilderInterface {
     navData: INav
+    domain: string
     settings: {
         homepageUrl?: string;
         name: string;
@@ -21,17 +22,18 @@ interface NavBuilderInterface {
     };
     isDetailPage?: boolean;
 }
-const LogoImage = () =>{
-    const { theme } = useContext(ThemeContext)
-    return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') && <div className="my-auto">
-        <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
-    </div>
-}
 
-const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) => {
+const NavBuilder = ({ navData, settings, isDetailPage,domain }: NavBuilderInterface) => {
     const router = useRouter()
     const navigation = navData.navigation
     const { theme } = useContext(ThemeContext)
+    
+    const LogoImage = () =>{
+    return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') && <div className="my-auto">
+        <Image src={theme.logo?.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+    </div>
+}
+
     return <div className="fixed w-full flex justify-between px-4 h-[52px] z-50"
         style={{
             backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : theme?.color ? theme.color : 'black',
