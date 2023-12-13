@@ -1,0 +1,75 @@
+.ng-star-inserted {
+    margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+    .ng-star-inserted>div:nth-child(2) {
+        background-color: #fff;
+        box-shadow: unset;
+    }
+
+    .ng-star-inserted>div:nth-child(2)>div {
+        background-color: #eee;
+    }
+
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+
+    .sc-11 {
+        background-image: url(https://s3.amazonaws.com/career-sites.cdn.snagajob.com/5e3c229585cc39002e6f5a38/e8cd0004-c25e-40f5-98c2-2ca09fef0faf.jpg) !important
+    }
+
+    .footer-box {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+div#search-job {
+    padding: 50px 0 30px;
+}
+
+customer-site>div:nth-child(2) {
+    background-size: cover;
+    background-position: center;
+}
+
+customer-site>div:nth-child(3) {
+    margin-top: 52px !important;
+    min-height: 440px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+customer-site>div:nth-child(3) img {
+    width: auto;
+    max-width: 260px;
+}
+
+.sc-1, .sc-9, .sc-11 {
+    min-height: 330px;
+}
+
+.sc-10 {
+    display: none;
+}
+
+.header-button {
+    color: #fff !important;
+}
+
+customer-site>div:first-child>div:nth-child(2) {
+    color: #fff !important;
+}
+
+.header-button:hover {
+    background-color: rgba(50, 35, 240, 0.204) !important;
+}
+
+.sc-11 div.relative {
+    display: none;
+}
