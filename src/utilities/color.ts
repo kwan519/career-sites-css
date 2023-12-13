@@ -66,6 +66,8 @@ export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
             return theme.footerColor ? theme.footerColor : theme.color
         case 'footerBackgroundColor':
             return theme.footerBackgroundColor ? theme.footerBackgroundColor : theme.color
+        case 'buttonColor':
+            return theme.buttonColor ? theme.buttonColor : theme.color
         default:
             return theme.color ? theme.color : `var(---${keyName})`
        }

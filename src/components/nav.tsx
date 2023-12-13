@@ -50,6 +50,7 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
                             className="capitalize header-button no-underline! h-fit my-auto"
                             style={{
                                 color: GetHeaderColor(theme),
+                                backgroundColor: GetColorFromTheme("buttonColor",theme),
                                 textDecoration: 'none'
                             }}>{navData.name}</Link>
                     })
