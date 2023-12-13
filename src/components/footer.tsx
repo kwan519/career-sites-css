@@ -8,15 +8,15 @@ import { FacebookIcon , InstagramIcon , LinkedInIcon, TwitterXIcon, YoutubeIcon 
 interface FooterInterface {
     footer: { sections: ISection[] };
     socialMedia: ISocialMedia;
+    domain: string
 }
 const GenerateSocialMedia = () => {
     return <div> </div>
 }
 
-const FooterBuilder = ({ footer, socialMedia }: FooterInterface) => {
+const FooterBuilder = ({ footer, socialMedia , domain}: FooterInterface) => {
     const { theme } = useContext(ThemeContext)
     const sections = footer.sections
-    console.log('build footer')
     return <div
         className="relative flex flex-col items-center justify-center mx-auto px-[100px] py-[20px] z-20 footer-box"
         style={{
@@ -32,7 +32,7 @@ const FooterBuilder = ({ footer, socialMedia }: FooterInterface) => {
         </div>
         
         {
-            sections.map((section) => <Section key={`section-${section.type}`} section={section} className="footer" isFooter></Section>)
+            sections.map((section) => <Section key={`section-${section.type}`} section={section} className="footer" domain={domain} isFooter></Section>)
         }
     </div>
 }
