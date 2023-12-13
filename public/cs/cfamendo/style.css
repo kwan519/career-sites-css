@@ -22,17 +22,16 @@ div#search-job {
     padding: 50px 0 30px;
 }
 
-customer-site>div:nth-child(3) {
-    margin-top: 52px !important;
-    min-height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+
+customer-site>div:nth-child(2) {
+    background-size: cover;
+    background-position: center;
 }
 
-customer-site>div:nth-child(3) img {
-    width: auto;
-    max-width: 260px;
+customer-site>div:nth-child(3) {
+    margin-top: 52px !important;
+    min-height: 440px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

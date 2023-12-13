@@ -24,15 +24,9 @@ div#search-job {
 
 customer-site>div:nth-child(3) {
     margin-top: 52px !important;
-    min-height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-customer-site>div:nth-child(3) img {
-    width: auto;
-    max-width: 260px;
 }
