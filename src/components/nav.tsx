@@ -29,8 +29,8 @@ const NavBuilder = ({ navData, settings, isDetailPage,domain }: NavBuilderInterf
     const { theme } = useContext(ThemeContext)
     
     const LogoImage = () =>{
-    return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') && <div className="my-auto">
-        <Image src={theme.logo?.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+    return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') && theme.logo?.url && <div className="my-auto">
+        <Image src={theme.logo?.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
     </div>
 }
 

@@ -9,7 +9,6 @@ import FooterBuilder from "./footer";
 import { useRouter } from "next/router";
 
 const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia,domain }: SiteInterface) => {
-    const router = useRouter()
     const name = pages[0].name
     const section = pages[0].sections
     const { theme } = useContext(ThemeContext)
@@ -29,7 +28,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             </div>
             <div className="mt-12 z-20 py-[30px] min-h-[300px]">
                 {
-                    (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null || theme?.logoPosition === 'logo-header-and-intro') && theme?.logo !== null && <Link href={settings.homepageUrl ?? router.asPath}>
+                    (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null || theme?.logoPosition === 'logo-header-and-intro') && theme?.logo !== null && <Link href={settings.homepageUrl ?? '#'}>
                         <Image
                             className="mx-auto"
                             src={theme?.logo.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
