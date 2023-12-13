@@ -26,9 +26,7 @@ function MyCombobox() {
                             className="form-control ng-untouched ng-pristine ng-valid ng-star-inserted"
                             onChange={(event) => setQuery(event.target.value)}
                             onBlur={(event) => {
-                                if (selectedState === undefined && event.currentTarget.value) {
                                     setSelectedState(event.currentTarget.value)
-                                }
                             }}
                             aria-label="Search City and State or Zipcode"
                             placeholder="Search City and State or Zipcode" />
