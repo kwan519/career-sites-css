@@ -31,7 +31,7 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
             color: GetHeaderColor(theme)
         }}>
         {
-            theme?.logoPosition === 'logo-header' && <div className="my-auto">
+            theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro' && <div className="my-auto">
                 <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
             </div>
         }
