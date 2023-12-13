@@ -6,7 +6,6 @@ import parse from 'html-react-parser';
 import Link from "next/link";
 import Section from "./section";
 import FooterBuilder from "./footer";
-import { useRouter } from "next/router";
 
 const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia,domain }: SiteInterface) => {
     const name = pages[0].name
@@ -44,7 +43,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                 }
             </div>
         </CustomTag>
-        {!settings.hideFooter && <FooterBuilder footer={{ sections: footer.sections }} socialMedia={socialMedia} />}
+        {!settings.hideFooter && <FooterBuilder footer={{ sections: footer.sections }} socialMedia={socialMedia} domain={domain} />}
     </main>
 }
 
