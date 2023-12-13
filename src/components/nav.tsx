@@ -25,23 +25,19 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
     const router = useRouter()
     const navigation = navData.navigation
     const { theme } = useContext(ThemeContext)
-    console.log(router.asPath)
     return <div className="fixed w-full flex justify-between px-4 h-[52px] z-50"
         style={{
             backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : theme?.color ? theme.color : 'black',
             color: GetHeaderColor(theme)
         }}>
-        {isDetailPage ? <div className="flex gap-2"> {
-            settings.homepageUrl && navigation.map((navData) => {
-                return <div key={navData.name}
+        {isDetailPage ? <div className="flex gap-2"> 
+        <div
                     className="capitalize header-button no-underline! h-fit my-auto"
                     style={{
                         color: GetHeaderColor(theme),
                         textDecoration: 'none'
                     }}
-                    onClick={() => router.back()}>Back</div>
-            })
-        }  </div> :
+                    onClick={() => router.back()}>Back</div> </div> :
             <div className="flex gap-2">
                 {
                     settings.homepageUrl && navigation.map((navData) => {

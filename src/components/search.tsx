@@ -84,7 +84,7 @@ const SearchBuilder = () => {
     }
     return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
-        <div className="row ng-star-inserted">
+        <div className=" ng-star-inserted">
             <div className="container w-full mx-auto flex justify-between md:space-x-8 ">
                 {/* Search input */}
                 <div className='w-full lg:w-4/12 flex gap-2'>
