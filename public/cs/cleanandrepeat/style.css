@@ -38,7 +38,7 @@ customer-site>div:nth-child(3) {
     flex: 1 0;
     justify-content: center;
     height: 100%;
-    padding: 30px 30px;
+    padding: 60px 30px 30px 30px;
     box-sizing: border-box;
     align-items: center;
     margin: 3rem 0 !important;
@@ -110,4 +110,23 @@ ul {
     .bg-white>div:nth-child(5) {
         padding: 50px 0 30px;
     }
+}
+
+div#search-job {
+    padding: 50px 0 30px;
+}
+
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: scroll;
+    }
+    .ng-star-inserted>div:nth-child(2) {
+        background-color: transparent;
+        box-shadow: unset;
+    }
+    .ng-star-inserted>div:nth-child(2)>div {
+        background-color: #eee;
+    }
+
 }
