@@ -6,8 +6,10 @@ import parse from 'html-react-parser';
 import Link from "next/link";
 import Section from "./section";
 import FooterBuilder from "./footer";
+import { useRouter } from "next/router";
 
 const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMedia }: SiteInterface) => {
+    const router = useRouter()
     const name = pages[0].name
     const section = pages[0].sections
     const { theme } = useContext(ThemeContext)
@@ -26,7 +28,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             </div>
             <div className="mt-12 z-20 py-[30px] min-h-[300px]">
                 {
-                    (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null) && theme?.logo !== null && <Link href={settings.homepageUrl ?? ''}>
+                    (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null) && theme?.logo !== null && <Link href={settings.homepageUrl ?? router.asPath}>
                         <Image
                             className="mx-auto"
                             src={theme?.logo.url ?? ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
