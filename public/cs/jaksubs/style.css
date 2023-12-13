@@ -31,8 +31,3 @@ customer-site>div:nth-child(3) {
     justify-content: center;
     flex-direction: column;
 }
-
-customer-site>div:nth-child(3) img {
-    width: auto;
-    max-width: 260px;
-}
