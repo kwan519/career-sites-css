@@ -7,7 +7,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const subSite = context.params?.subSite
     try {
         const brandName = subSite
-        const file = await fetch(`https://nowhiring.com/api/career-live-sites/nowhiring.com%2F${brandName}`).then(res => res.text())
+        const file = await fetch(`https://cdn.hiringtoday.com/nowhiring.com/${brandName}/${brandName}.json`).then(res => res.text())
         // console.log(file)
         const jsonObject: SiteInterface = JSON.parse(file) as SiteInterface
         return {

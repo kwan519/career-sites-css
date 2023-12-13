@@ -13,6 +13,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "career-sites.cdn.snagajob.com",
         port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.hiringtoday.com",
+        port: "",
       }
     ],
   },

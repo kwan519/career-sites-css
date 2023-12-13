@@ -6,7 +6,7 @@ import ReactPlayer from "react-player"
 import Image from 'next/image'
 import { GetColumnsClassFromTotal } from "@/utilities/columnsClass"
 
-const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: number }) => {
+const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; totalColumn: number; domain: string }) => {
     const { theme } = useContext(ThemeContext)
     const CustomVideoTag = 'customer-site-column-video' as keyof JSX.IntrinsicElements;
     return <div className={`relative ${GetColumnsClassFromTotal(totalColumn)} ${column.type === 'cta' ? '!p-0' : ''}`}>
@@ -14,7 +14,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
             column.type === 'text' && <div className='mx-auto customer-site-column-text-content'
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : undefined,
-                    backgroundImage: column.backgroundImage?.url ? `url(${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
                 }}>
                 {
                     parse(column.html)
@@ -25,7 +25,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
             column.type === 'testimonial' && <div className='mx-auto'
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : undefined,
-                    backgroundImage: column.backgroundImage?.url ? `url(${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
                 }}>
                 {
                     parse(column.html)
@@ -35,7 +35,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
         {
             column.type === 'image' && <Image
                 className="w-full h-full object-cover"
-                src={column.image?.url ?? ''} 
+                src={column.image?.url ? `https://cdn.hiringtoday.com/${domain}/images/${column.image?.url}` : ''} 
                 alt={column.image?.altText ?? ''} width={400} height={400} />
         }
         {
@@ -68,7 +68,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
             column.type === 'cta' && <div className='mx-auto h-[330px] flex flex-col justify-center p-[10px] '
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : 'gray',
-                    backgroundImage: column.backgroundImage?.url ? `url(${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
                     backgroundPosition: column.backgroundImage?.url ? "center center" : undefined,
                     backgroundSize: column.backgroundImage?.url ? "cover" : undefined,
                 }}>
