@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-
+import Image from 'next/image'
 interface INav {
     navigation: {
         name: string;
@@ -30,14 +30,19 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
             backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : theme?.color ? theme.color : 'black',
             color: GetHeaderColor(theme)
         }}>
-        {isDetailPage ? <div className="flex gap-2"> 
-        <div
-                    className="capitalize header-button no-underline! h-fit my-auto"
-                    style={{
-                        color: GetHeaderColor(theme),
-                        textDecoration: 'none'
-                    }}
-                    onClick={() => router.back()}>Back</div> </div> :
+        {
+            theme?.logoPosition === 'logo-header' && <div className="my-auto">
+                <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+            </div>
+        }
+        {isDetailPage ? <div className="flex gap-2">
+            <div
+                className="capitalize header-button no-underline! h-fit my-auto"
+                style={{
+                    color: GetHeaderColor(theme),
+                    textDecoration: 'none'
+                }}
+                onClick={() => router.back()}>Back</div> </div> :
             <div className="flex gap-2">
                 {
                     settings.homepageUrl && navigation.map((navData) => {
@@ -51,9 +56,9 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
                     })
                 }
             </div>}
+
         {isDetailPage ? <div
             onClick={() => {
-                console.log(router.asPath)
                 const currentPath = router.asPath
                 router.push(`/${currentPath.split('/')[1]}#search-job`)
             }}

@@ -52,9 +52,7 @@ function cleanHexColor(colorString: string) {
 }
 
 export const GetColorFromTheme = (keyName: string, theme?: ITheme ) => {
-    console.log(keyName)
     if(isValidCssValue(keyName)) {
-        console.log('is found css')
         return keyName
     }else if(theme) {
        switch (keyName) {
