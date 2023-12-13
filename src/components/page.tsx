@@ -22,7 +22,8 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                 style={{
                     backgroundColor: siteIntro.backgroundColor ? siteIntro.backgroundColor : undefined,
                     backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
-                    backgroundRepeat: 'no-repeat'
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover'
                 }}
             >
             </div>
