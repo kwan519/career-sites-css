@@ -30,12 +30,12 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
             backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : theme?.color ? theme.color : 'black',
             color: GetHeaderColor(theme)
         }}>
-        {
-            theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro' && <div className="my-auto">
-                <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
-            </div>
-        }
         {isDetailPage ? <div className="flex gap-2">
+            {
+                theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro' && <div className="my-auto">
+                    <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+                </div>
+            }
             <div
                 className="capitalize header-button no-underline! h-fit my-auto"
                 style={{
@@ -46,14 +46,25 @@ const NavBuilder = ({ navData, settings, isDetailPage }: NavBuilderInterface) =>
             <div className="flex gap-2">
                 {
                     settings.homepageUrl && navigation.map((navData) => {
-                        return <Link key={navData.name}
+                        {
+                            return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') ? 
+                            <Link key={navData.name}
+                            className="my-auto"
+                            href={navData.name === 'home' ? settings.homepageUrl ?? '' : navData.page}>
+                                <Image src={theme.logo?.url ?? ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+                            </Link>
+                            : 
+                            <Link key={navData.name}
                             href={navData.name === 'home' ? settings.homepageUrl ?? '' : navData.page}
                             className="capitalize header-button no-underline! h-fit my-auto"
                             style={{
                                 color: GetHeaderColor(theme),
                                 backgroundColor: GetColorFromTheme("buttonColor",theme),
                                 textDecoration: 'none'
-                            }}>{navData.name}</Link>
+                            }}>
+                                {navData.name}
+                            </Link>
+                        }
                     })
                 }
             </div>}
