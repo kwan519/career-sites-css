@@ -81,7 +81,7 @@ const ColumnBuilder = ({ column, totalColumn }: { column: IColumn; totalColumn: 
                     > <a href={column.buttonLink?.url} 
                     className="p-4 w-fit !no-underline cursor-pointer rounded-lg mx-auto hover:brightness-50"
                     style={{
-                        backgroundColor: GetColorFromTheme('headerBackgroundColor', theme),
+                        backgroundColor: GetColorFromTheme('buttonColor', theme),
                         color: GetHeaderColor(theme)
                     }}>{column.buttonLink?.text}</a></div>
                 }
