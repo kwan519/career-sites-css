@@ -27,6 +27,10 @@ ul {
 .mt-12.z-20.py-\[30px\].min-h-\[300px\] strong {
     padding: 0px 25px;
 }
+.flex.gap-2.justify-start.flex-row.font-bold.items-center.my-auto.no-underline.w-fit.px-\[10px\].py-\[15px\].cursor-pointer {
+    background-color: #d5f0fb;
+}
+
 /* footer */
 .sc-undefined {
     padding: 0 15px;
