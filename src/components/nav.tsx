@@ -33,10 +33,10 @@ const NavBuilder = ({ navData, settings, isDetailPage,domain }: NavBuilderInterf
         <Image src={theme.logo?.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
     </div>
 }
-
+    console.log("headerBackgroundColor" , theme?.headerBackgroundColor ? GetColorFromTheme('headerBackgroundColor', theme) : theme?.color ? theme.color : 'black')
     return <div className="fixed w-full flex justify-between px-4 h-[52px] z-50"
         style={{
-            backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme(theme?.headerBackgroundColor, theme) : theme?.color ? theme.color : 'black',
+            backgroundColor: theme?.headerBackgroundColor ? GetColorFromTheme('headerBackgroundColor', theme) : theme?.color ? theme.color : 'black',
             color: GetHeaderColor(theme)
         }}>
             
