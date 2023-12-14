@@ -1,34 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-const intialState: UserGeoLocation = {
-    latitude: 0,
-    longitude: 0
+const intialState: SearchFilterType = {
+    filterItems: {},
+    path: 'orderBy=1'
 }
 
-export const userGeoLocationSlice = createSlice({
+export const searchFilterSlice = createSlice({
     reducers: {
-        setUserGeoLocation: (state, action: PayloadAction<UserGeoLocation>) => {
-            state.latitude = action.payload.latitude
-            state.longitude = action.payload.longitude
-        },
-        setUserLocality: (state, action: PayloadAction<string>) => {
-            state.locality = action.payload
-        },
         updateFilterPath: (state) => {
-            if (state.locality) {
-                state.locality = ''
-            }
+            const keys = Object.keys(state.filterItems)
+            const values = keys.map(key => {
+                const value = state.filterItems[key]
+                if(typeof value === 'number') {
+                    return `${key}=${value}`
+                }else if(typeof value === 'object') {
+                    const valueArr = value as SearchFilterItem[]
+                    return valueArr.map(item => `${key}[]=${item.value}`).join('&')
+                }else return ''
+            }).filter(x => x != '')
+            state.path = `${values.join('&')}`
+            console.log(state.path)
+        },
+        updateFilterItems: (state, action: PayloadAction<SeachFilters>) => {
+            state.filterItems = action.payload
         }
     },
-    name: 'UserGeoLocationSlice',
+    name: 'SearchFilterSlice',
     initialState: intialState
 })
 
 export const {
-    setUserGeoLocation,
-    setUserLocality
-}= userGeoLocationSlice.actions
+    updateFilterItems,
+    updateFilterPath
+}= searchFilterSlice.actions
 
-export const userGeoLocationItems = (state: RootState) => state.userGeoLocation
-export const userGeoLocationReducer = userGeoLocationSlice.reducer
+export const searchFilterItems = (state: RootState) => state.searchFilter
+export const searchFilterReducer = searchFilterSlice.reducer

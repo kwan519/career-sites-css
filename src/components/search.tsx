@@ -3,7 +3,7 @@ import { GetColorFromTheme, GetHeaderColor } from "@/utilities/color"
 import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon, ShareIcon } from "@heroicons/react/20/solid"
 import { useContext, useEffect, useState } from "react"
 import MyCombobox from "./combobox"
-import { MapIcon } from "./icon/searchIcons"
+// import { MapIcon } from "./icon/searchIcons"
 import DropDown from "./dropdown"
 import SearchPanelMobile from "./searchPanelMobile"
 import CheckboxGroupDropdown from "./checkboxGroupDropdown"
@@ -12,13 +12,14 @@ import Link from "next/link"
 import { useDispatch } from "react-redux"
 import { setUserGeoLocation, userGeoLocationItems } from "@/redux/slices/userLocation"
 import { useAppSelector } from "@/redux/hoooks"
+import { searchFilterItems, updateFilterPath } from "@/redux/slices/searchFilters"
 
 const searchRadiusOption = [
     { value: '5', label: '5 miles' },
     { value: '10', label: '10 miles' },
     { value: '25', label: '25 miles' },
     { value: '50', label: '50 miles' },
-    { value: '999', label: 'Everywhere' },
+    { value: '12800', label: 'Everywhere' },
 ]
 
 const searchOrderByOption = [
@@ -41,44 +42,55 @@ const resultHeader = [{
     label: ''
 }]
 const SearchBuilder = () => {
-    const { theme } = useContext(ThemeContext)
+    const { theme, siteId } = useContext(ThemeContext)
     const router = useRouter()
     const userLocation = "Your location"
     const dispatch = useDispatch()
     const {latitude, longitude} = useAppSelector(userGeoLocationItems)
+    const {filterItems, path: queryPath} = useAppSelector(searchFilterItems)
+
     const [searchPanelMobile, setSearchPanelMobile] = useState<boolean>(false)
     const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([])
     const [filterJobType, setFilterJobType] = useState<FilterInterface[]>([])
+    const [currentFilters, setCurrentFilters] = useState<SeachFilters>({})
+
     const [jobList, setJobList] = useState<JobItem[]>([])
     const [totalResult, setTotalResult] = useState<number>(0)
     const [totalPage, setTotalPage] = useState<number>(0)
+
     const handleLoadJobs = async () => {
         setSearchPanelMobile(false)
-        const fetchUrl = `http://localhost:8000/dev/v4/search/oid/1872?ordeyBy=2&center=${latitude},${longitude}`
+        const fetchUrl = `${process.env.NEXT_PUBLIC_API_URL}/search/oid/${siteId}?${queryPath}&center=${latitude},${longitude}`
         const result: SearchResponse = await fetch(fetchUrl).then(res => res.json())
         const jobs = result.data
         setJobList(jobs)
 
-        const filterJobTypeGroup = Array.from(new Set(jobs.map((item) => item.type))).map((type) => {
-            return {
-                value: type.toLowerCase().replace(/\s+/g, ''),
-                label: type,
-            };
-        });
-
-        const filterJobTitleGroup = Array.from(new Set(jobs.map((item) => item.name))).map((type) => {
-            return {
-                value: type.toLowerCase().replace(/\s+/g, ''),
-                label: type,
-            };
-        });
-
-        setFilterJobTitle(filterJobTitleGroup)
-        setFilterJobType(filterJobTypeGroup)
-
         setTotalPage(result.totalPage)
         setTotalResult(result.total)
     }
+
+    const handleLoadFilters = async (filterType: string) => {
+        /** Load filters */
+        console.log('handleLoadFilters')
+        const distance = filterItems['distance'] ?? searchRadiusOption[4].value //999 => everywhere
+        const fetchUrl = `${process.env.NEXT_PUBLIC_API_URL}/search/oid/${siteId}/filter/${filterType}?center=${latitude},${longitude}&distance=${distance}`
+
+        const filterJobResponse = await fetch(fetchUrl).then(res => res.json())
+        console.log(filterJobResponse)
+        const filterGroup = (filterJobResponse["jobRole"] as {id: string; name: string; count: number}[]).map(({name}) => (
+            {
+                value: name.toLowerCase().replace(/\s+/g, ''),
+                label: name,
+            }
+        )  )
+
+        if(filterType === 'jobRole') {
+            setFilterJobTitle(filterGroup)
+        }else {
+            setFilterJobType(filterGroup)
+        }
+    }
+
     useEffect(() => {
         // Retrieve user geolocation from browser
         if (navigator.geolocation) {
@@ -90,6 +102,7 @@ const SearchBuilder = () => {
                     latitude: latitude,
                     longitude: longitude
                 }))
+                dispatch(updateFilterPath())
             }, (error => {
                 console.log("Unable to retrieve your location");
                 console.error(error)
@@ -98,6 +111,12 @@ const SearchBuilder = () => {
             console.log("Geolocation not supported");
         }
     }, [])
+
+    useEffect(() => {
+        // Reload Filter everytime that user location was changed
+        handleLoadFilters('jobRole')
+        handleLoadFilters('contractType')
+    }, [jobList.length, latitude, longitude, filterItems['distance']])
     return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
         <div className=" ng-star-inserted">

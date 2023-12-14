@@ -217,3 +217,7 @@ interface SearchFilterItem {
 interface SeachFilters {
   [key: string]: SearchFilterItem[] | number | undefined;
 }
+interface SearchFilterType {
+  filterItems: SeachFilters;
+  path: string
+}
