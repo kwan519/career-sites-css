@@ -17,6 +17,12 @@ const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; total
                     backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
                 }}>
                 {
+                    column.image && <Image
+                    className="w-full h-full object-cover"
+                    src={column.image?.url ? `https://cdn.hiringtoday.com/${domain}/images/${column.image?.url}` : ''} 
+                    alt={column.image?.altText ?? ''} width={400} height={400} />
+                }
+                {
                     parse(column.html)
                 }
             </div>
