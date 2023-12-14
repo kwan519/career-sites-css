@@ -4640,3 +4640,7 @@ customer-site-column-video .column-video {
   height: 34px;
   display: block;
  }
+
+ td a {
+  text-decoration: none !important;
+ }

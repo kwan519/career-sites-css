@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@reduxjs/toolkit": "^2.0.1",
     "framer-motion": "^10.16.15",
     "grapesjs": "^0.21.7",
     "grapesjs-navbar": "^1.0.2",
@@ -20,7 +21,8 @@
     "parse5": "^7.1.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-player": "^2.13.0"
+    "react-player": "^2.13.0",
+    "react-redux": "^9.0.4"
   },
   "devDependencies": {
     "@grapesjs/react": "^1.0.0",

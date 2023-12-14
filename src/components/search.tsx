@@ -1,12 +1,17 @@
 import { ThemeContext } from "@/contexts/themeContext"
 import { GetColorFromTheme, GetHeaderColor } from "@/utilities/color"
 import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon, ShareIcon } from "@heroicons/react/20/solid"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import MyCombobox from "./combobox"
 import { MapIcon } from "./icon/searchIcons"
 import DropDown from "./dropdown"
 import SearchPanelMobile from "./searchPanelMobile"
 import CheckboxGroupDropdown from "./checkboxGroupDropdown"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { setUserGeoLocation, userGeoLocationItems } from "@/redux/slices/userLocation"
+import { useAppSelector } from "@/redux/hoooks"
 
 const searchRadiusOption = [
     { value: '5', label: '5 miles' },
@@ -24,50 +29,44 @@ const searchOrderByOption = [
 const resultHeader = [{
     key: 'name',
     label: 'Job Title',
-}, {
-    key: 'fullLocation',
-    label: 'Address'
 },
 {
     key: 'type',
     label: 'Job Type',
+}, {
+    key: 'location',
+    label: 'Address'
 }, {
     key: 'action',
     label: ''
 }]
 const SearchBuilder = () => {
     const { theme } = useContext(ThemeContext)
-    const userLocation = "Pattaya, 20"
+    const router = useRouter()
+    const userLocation = "Your location"
+    const dispatch = useDispatch()
+    const {latitude, longitude} = useAppSelector(userGeoLocationItems)
     const [searchPanelMobile, setSearchPanelMobile] = useState<boolean>(false)
     const [filterJobTitle, setFilterJobTitle] = useState<FilterInterface[]>([])
     const [filterJobType, setFilterJobType] = useState<FilterInterface[]>([])
-    const [jobList, setJobList] = useState<{ [key: string]: string | undefined }[]>([])
-    const handleLoadJobs = () => {
+    const [jobList, setJobList] = useState<JobItem[]>([])
+    const [totalResult, setTotalResult] = useState<number>(0)
+    const [totalPage, setTotalPage] = useState<number>(0)
+    const handleLoadJobs = async () => {
         setSearchPanelMobile(false)
-        const jobMockupData = [
-            {
-                name: 'Software Engineer',
-                fullLocation: '2136 Declaration Dr Independence, KY, 41051',
-                type: 'Full Time',
-            }, {
-                name: 'Software Engineer',
-                fullLocation: 'Pattaya, 20',
-                type: 'Full Time',
-            }, {
-                name: 'Software Engineer',
-                fullLocation: 'Pattaya, 20',
-                type: 'Part Time',
-            }
-        ]
-        setJobList(jobMockupData)
-        const filterJobTypeGroup = Array.from(new Set(jobMockupData.map((item) => item.type))).map((type) => {
+        const fetchUrl = `http://localhost:8000/dev/v4/search/oid/1872?ordeyBy=2&center=${latitude},${longitude}`
+        const result: SearchResponse = await fetch(fetchUrl).then(res => res.json())
+        const jobs = result.data
+        setJobList(jobs)
+
+        const filterJobTypeGroup = Array.from(new Set(jobs.map((item) => item.type))).map((type) => {
             return {
                 value: type.toLowerCase().replace(/\s+/g, ''),
                 label: type,
             };
         });
 
-        const filterJobTitleGroup = Array.from(new Set(jobMockupData.map((item) => item.name))).map((type) => {
+        const filterJobTitleGroup = Array.from(new Set(jobs.map((item) => item.name))).map((type) => {
             return {
                 value: type.toLowerCase().replace(/\s+/g, ''),
                 label: type,
@@ -77,11 +76,28 @@ const SearchBuilder = () => {
         setFilterJobTitle(filterJobTitleGroup)
         setFilterJobType(filterJobTypeGroup)
 
-        console.log('do searching....')
+        setTotalPage(result.totalPage)
+        setTotalResult(result.total)
     }
-    const handleJobDetail = (jobId: string) => {
-        
-    }
+    useEffect(() => {
+        // Retrieve user geolocation from browser
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                dispatch(setUserGeoLocation({
+                    latitude: latitude,
+                    longitude: longitude
+                }))
+            }, (error => {
+                console.log("Unable to retrieve your location");
+                console.error(error)
+            }));
+        } else {
+            console.log("Geolocation not supported");
+        }
+    }, [])
     return <div id="search-job">
         <h3 className="w-full text-center" style={{ color: GetColorFromTheme('headerColor', theme) }}>Open Jobs</h3>
         <div className=" ng-star-inserted">
@@ -101,11 +117,11 @@ const SearchBuilder = () => {
                             </div>
                         </div>
                     </form>
-                    <div>
+                    {/* <div>
                         <span id="job-search-bar-view-toggle">
                             <span ><MapIcon className="w-full p-2" fill='none' /></span>
                         </span>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Search filter with radius for Desktop */}
@@ -161,7 +177,7 @@ const SearchBuilder = () => {
             <div className="container w-full mx-auto shadow-md md:shadow-none bg-[#eee] md:bg-transparent ">
                 <div className="bg-transparent md:bg-[#eee] h-[40px] flex justify-between">
                     <div className="p-4 font-bold">
-                        {jobList.length > 0 ? `${jobList.length} jobs` : ''}
+                        {jobList.length > 0 ? `${totalResult} jobs` : ''}
                     </div>
                     <div className="p-2 border-l block lg:hidden" onClick={() => setSearchPanelMobile(!searchPanelMobile)}>
                         <AdjustmentsHorizontalIcon className="w-full h-full" />
@@ -203,10 +219,10 @@ const SearchBuilder = () => {
                             )}
                         </tr>
                         {jobList.map((row, index) =>
-                            <tr key={`rs-bd-${index}`} className="hidden md:table-row border-b-[1px] h-full cursor-pointer" onClick={() => console.log('click to best page')}>
+                            <tr key={`rs-bd-${index}`} className="hidden md:table-row border-b-[1px] h-full cursor-pointer" onClick={() => { router.push(`${router.asPath}/job/${row.jobId}`) }}>
                                 {Object.keys(row).map(columnKey => {
                                     if (columnKey === 'name') return <td className="py-8 font-bold h-full min-w-[200px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
-                                    if (columnKey === 'fullLocation') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
+                                    if (columnKey === 'location') return <td className="py-8 h-full "><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
                                     if (columnKey === 'type') return <td className="min-w-[150px]"><div className="whitespace-pre-wrap">{row[columnKey]}</div></td>
                                 })}
                                 <td className="flex justify-end py-8 gap-4">
@@ -220,7 +236,15 @@ const SearchBuilder = () => {
                                             e.stopPropagation()
                                             console.log('share')
                                         }}>Share</button>
-                                    <button className="p-4 rounded-md" style={{ backgroundColor: GetColorFromTheme('headerBackgroundColor', theme), color: GetHeaderColor(theme) }}>Apply</button>
+                                    <Link
+                                        href={row.applyUrl}
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            console.log('share')
+                                        }}
+                                        target="_blank"
+                                        className="p-4 rounded-md no-underline"
+                                        style={{ backgroundColor: GetColorFromTheme('headerBackgroundColor', theme), color: GetHeaderColor(theme) }}>Apply</Link>
                                 </td>
 
                             </tr>
@@ -230,7 +254,7 @@ const SearchBuilder = () => {
                                 <div>
                                     {Object.keys(row).map(columnKey => {
                                         if (columnKey === 'name') return <div className="whitespace-pre-wrap font-bold ">{row[columnKey]}</div>
-                                        if (columnKey === 'fullLocation') return <div className="whitespace-pre-wrap">{row[columnKey]}</div>
+                                        if (columnKey === 'location') return <div className="whitespace-pre-wrap">{row[columnKey]}</div>
                                         if (columnKey === 'type') return <div className="whitespace-pre-wrap">{row[columnKey]}</div>
                                     })}
                                 </div>

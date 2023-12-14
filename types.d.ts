@@ -28,7 +28,7 @@ interface IColumn {
 }
 interface ISection {
   isReadOnly: boolean;
-  backgroundColor?: string; 
+  backgroundColor?: string;
   backgroundImage?: IImage;
   columns: IColumn[];
   header: IColumn;
@@ -122,49 +122,52 @@ interface SiteInterface {
   theme: ITheme;
 }
 
-
 // Search Interface
-interface FilterInterface  { value: string; label: string }
+interface FilterInterface {
+  value: string;
+  label: string;
+}
 interface JobInterface {
   jobId: string;
   name: string;
   branch: BranchType;
   category: string;
-  type: JobType | string;
-category: string;
+  type: string;
+  category: string;
   shift: ShiftType | string;
   hours: HourType | string;
-  postedDate: string; 
+  postedDate: string;
   expireDate: string;
   pay: string;
-payType: string;
-  detailHTML?: string ;
-  shortDescriptionHTML?: string ;
-fullLocation?: string;
-shortLocation?: string;
-shortDetail?: string;
+  payType: string;
+  detailHTML?: string;
+  shortDescriptionHTML?: string;
+  fullLocation?: string;
+  shortLocation?: string;
+  shortDetail?: string;
 }
 
 interface JobDetailType {
   jobId: string;
   name: string;
-  location: LocationDetailType;
+  location?: LocationDetailType;
   branch: BranchType;
   category: string;
-  type: JobType | string;
-category: string;
+  type: string;
+  category: string;
   shift: ShiftType | string;
   hours: HourType | string;
-  postedDate: string; 
+  postedDate: string;
   expireDate: string;
   pay: string;
-payType: string;
-  detailHTML?: string ;
-  shortDescriptionHTML?: string ;
-fullLocation?: string;
-shortLocation?: string;
-shortDetail?: string;
-applyUrl?: srting;
+  payType: string;
+  detailHTML?: string;
+  shortDescriptionHTML?: string;
+  fullLocation?: string;
+  shortLocation?: string;
+  shortDetail?: string;
+  applyUrl?: string;
+  distance?: string;
 }
 
 interface LocationDetailType {
@@ -178,5 +181,39 @@ interface LocationDetailType {
 interface BranchType {
   branchId: string;
   branchName: string;
-branchLogoUrl?: string;
+  branchLogoUrl?: string;
+}
+
+interface SearchResponse {
+  data: JobItem[];
+  total: number;
+  totalPage: number;
+}
+
+interface JobItem {
+  jobId: string;
+  name: string;
+  type: string;
+  lat: string;
+  lng: string;
+  postedDate: string;
+  location: string;
+  expireDate: string;
+  distance: number;
+  applyUrl: string;
+}
+
+interface UserGeoLocation {
+  latitude: number;
+  longitude: number;
+  locality?: string;
+}
+
+interface SearchFilterItem {
+  type: string;
+  value: string;
+}
+
+interface SeachFilters {
+  [key: string]: SearchFilterItem[] | number | undefined;
 }
