@@ -30,7 +30,7 @@ const NavBuilder = ({ navData, settings, isDetailPage,domain }: NavBuilderInterf
     
     const LogoImage = () =>{
     return (theme?.logoPosition === 'logo-header' || theme?.logoPosition === 'logo-header-and-intro') && theme.logo?.url && <div className="my-auto">
-        <Image src={theme.logo?.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
+        <Image src={theme.logo?.url ? `${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme.logo?.altText ?? ''} width={100} height={40} className="w-full h-[40px]"/>
     </div>
 }
     console.log("headerBackgroundColor" , theme?.headerBackgroundColor ? GetColorFromTheme('headerBackgroundColor', theme) : theme?.color ? theme.color : 'black')

@@ -18,6 +18,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.hiringtoday.com",
         port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "s3-us-west-1-prd-product-assets.s3.us-west-1.amazonaws.com",
+        port: "",
       }
     ],
   },

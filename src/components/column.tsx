@@ -14,12 +14,12 @@ const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; total
             column.type === 'text' && <div className='mx-auto customer-site-column-text-content'
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : undefined,
-                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${column.backgroundImage?.url})` : undefined,
                 }}>
                 {
                     column.image && <Image
                     className="w-full h-full object-cover"
-                    src={column.image?.url ? `https://cdn.hiringtoday.com/${domain}/images/${column.image?.url}` : ''} 
+                    src={column.image?.url ? `${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${column.image?.url}` : ''} 
                     alt={column.image?.altText ?? ''} width={400} height={400} />
                 }
                 {
@@ -31,7 +31,7 @@ const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; total
             column.type === 'testimonial' && <div className='mx-auto'
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : undefined,
-                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${column.backgroundImage?.url})` : undefined,
                 }}>
                 {
                     parse(column.html)
@@ -41,7 +41,7 @@ const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; total
         {
             column.type === 'image' && <Image
                 className="w-full h-full object-cover"
-                src={column.image?.url ? `https://cdn.hiringtoday.com/${domain}/images/${column.image?.url}` : ''} 
+                src={column.image?.url ? `${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${column.image?.url}` : ''} 
                 alt={column.image?.altText ?? ''} width={400} height={400} />
         }
         {
@@ -74,7 +74,7 @@ const ColumnBuilder = ({ column, totalColumn, domain }: { column: IColumn; total
             column.type === 'cta' && <div className='mx-auto h-[330px] flex flex-col justify-center p-[10px] '
                 style={{
                     backgroundColor: column.backgroundColor ? GetColorFromTheme(column.backgroundColor, theme) : 'gray',
-                    backgroundImage: column.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${column.backgroundImage?.url})` : undefined,
+                    backgroundImage: column.backgroundImage?.url ? `url(${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${column.backgroundImage?.url})` : undefined,
                     backgroundPosition: column.backgroundImage?.url ? "center center" : undefined,
                     backgroundSize: column.backgroundImage?.url ? "cover" : undefined,
                 }}>
