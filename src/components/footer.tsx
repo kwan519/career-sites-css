@@ -20,7 +20,7 @@ const FooterBuilder = ({ footer, socialMedia , domain}: FooterInterface) => {
     return <div
         className="relative flex flex-col items-center justify-center mx-auto px-[100px] py-[20px] z-20 footer-box"
         style={{
-            backgroundColor: theme?.footerBackgroundColor ? GetColorFromTheme(theme?.footerBackgroundColor, theme) : theme?.color ? theme?.color : 'black',
+            backgroundColor: theme?.footerBackgroundColor ? GetColorFromTheme('footerBackgroundColor', theme) : theme?.color ? theme?.color : 'black',
             color: GetHeaderColor(theme)
         }}>
         <div className="flex flex-row gap-10 footerSocialMedia mt-[20px]">
