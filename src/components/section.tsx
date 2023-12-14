@@ -17,7 +17,7 @@ const Section = ({domain, section, isFooter, className, index }: SectionBuilderi
     const SectionCustomTag = 'customer-site-section' as keyof JSX.IntrinsicElements;
     if (section.type === "content")
         return <div  className={`${isFooter ? 'section-container-footer' : 'section-container'} section-content sc-${index}`}   style={{
-            backgroundImage: section.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/${section.backgroundImage?.url})` : undefined,
+            backgroundImage: section.backgroundImage?.url ? `url(https://cdn.hiringtoday.com/${domain}/images/${section.backgroundImage?.url})` : undefined,
             backgroundSize: section.backgroundImage?.url  ?"cover" : undefined ,
             backgroundPosition: section.backgroundImage?.url  ?"center center" : undefined,
             backgroundColor: section.backgroundColor ? GetColorFromTheme(section.backgroundColor, theme)  : undefined
