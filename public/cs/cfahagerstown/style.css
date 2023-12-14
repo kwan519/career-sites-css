@@ -27,12 +27,12 @@ ul {
 .mt-12.z-20.py-\[30px\].min-h-\[300px\] strong {
     padding: 0px 25px;
 }
-.sc-3 .row {
+.sc-4 .row {
     width: 100%;
     margin: auto;
 }
-.sc-3 h3 {
-    margin-bottom: 30px;
+.sc-4 {
+    background-color: transparent !important;
 }
 
 /* footer */
@@ -79,6 +79,10 @@ ul {
     h3 {
         margin-top: 0 !important;
     }
+    .sc-3 img {
+        margin-bottom: 20px;
+    }
+    
     /* footer */
     .footer-box {
         padding-left: 20px !important;

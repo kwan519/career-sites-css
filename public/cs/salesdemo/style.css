@@ -27,12 +27,15 @@ ul {
 .mt-12.z-20.py-\[30px\].min-h-\[300px\] strong {
     padding: 0px 25px;
 }
-.sc-3 .row {
+.sc-2 .row {
     width: 100%;
     margin: auto;
 }
-.sc-3 h3 {
-    margin-bottom: 30px;
+.header-button:hover {
+    background-color: #23527c !important;
+}
+.section-container:nth-child(odd).section-content {
+    background-color: transparent !important;
 }
 
 /* footer */

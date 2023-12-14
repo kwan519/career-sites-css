@@ -27,17 +27,51 @@ ul {
 .mt-12.z-20.py-\[30px\].min-h-\[300px\] strong {
     padding: 0px 25px;
 }
+.sc-2 .row {
+    width: 100%;
+    margin: auto;
+}
 .sc-3 .row {
     width: 100%;
     margin: auto;
 }
-.sc-3 h3 {
-    margin-bottom: 30px;
+.sc-3 a {
+    color: #fff !important;
 }
+.sc-3 .relative.col-sm-4.col-xs-12.\!p-0 div {
+    display: flex;
+}
+.sc-3 {
+    padding-top: 0;
+}
+
+.sc-3 customer-site-section {
+    padding: 0;
+}
+.header-button:hover {
+    background-color: #23527c !important;
+}
+img.mx-auto:not([class*=sc] img) {
+    width: 162px;
+}
+.section-container.section-content.sc-0, .section-container.section-content.sc-1, .section-container.section-content.sc-2 {
+    background-color: rgb(51, 51, 51) !important;
+}
+.flex.gap-2.justify-start.flex-row.font-bold.items-center.my-auto.no-underline.w-fit.px-\[10px\].py-\[15px\].cursor-pointer {
+    color: #fff !important;
+}
+
+
 
 /* footer */
 .sc-undefined {
     padding: 0 15px;
+}
+.footer-box {
+    color: #fff !important;
+}
+.footer-box svg {
+    fill: #fff;
 }
 
 

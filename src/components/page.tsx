@@ -19,7 +19,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
             <div className="fixed top-0 h-[500px] w-full z-10"
                 style={{
                     backgroundColor: siteIntro.backgroundColor ? siteIntro.backgroundColor : undefined,
-                    backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(https://cdn.hiringtoday.com/${domain}/images/${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
+                    backgroundImage: siteIntro.backgroundImage?.url && siteIntro.backgroundImage?.url !== null ? `url(${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${siteIntro?.backgroundImage?.url ?? ''})` : undefined,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}
@@ -30,7 +30,7 @@ const PageBuilder = ({ pages, navigation, siteIntro, settings, footer, socialMed
                     (theme?.logoPosition === 'logo-intro' || theme?.logoPosition === null || theme?.logoPosition === 'logo-header-and-intro') && theme?.logo !== null && <Link href={settings.homepageUrl ?? '#'}>
                         <Image
                             className="mx-auto"
-                            src={theme?.logo.url ? `https://cdn.hiringtoday.com/${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
+                            src={theme?.logo.url ? `${process.env.NEXT_PUBLIC_ASSET_DOMAIN}${domain}/images/${theme?.logo.url ?? ''}` : ''} alt={theme?.logo.altText ?? ''} width={260} height={250} />
                     </Link>
                 }
                 {
